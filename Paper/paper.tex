@@ -1,6 +1,8 @@
-\def\year{2018}\relax
-%File: formatting-instruction.tex
-\documentclass[letterpaper]{article}
+%=====================��=======��==============================
+\documentclass[a4paper,12pt]{article}%\documentclass[a4paper,12pt,titlepage]{article}
+\usepackage[22222222]{MCMthesis}  %�Ӻ���������д
+
+\usepackage{palatino}
 \usepackage{times}
 \usepackage{verbatim}
 \usepackage{graphicx}
@@ -32,6 +34,8 @@
 \usepackage{makecell}
 \usepackage{float}
 
+
+\setlength\parskip{.8\baselineskip}
 \setcounter{secnumdepth}{2}
 
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}   %Use Input in the format of Algorithm
@@ -65,26 +69,25 @@
 
 \sloppy
 
-\title{21st Century Newton}
 
-\author{ Issac Newton
-}
 
+\title{The \LaTeX Template for  MCM Version4.0}
+\author{\small Edit by:China\TeX{} \url{http://blog.sina.com.cn/wangzhaoli11}}
+\date{\today}
 \begin{document}
 \maketitle
-
-\input{abstract.tex}
+\input{abstract.tex}                                              
+\newpage                                                          
+\tableofcontents                                                  
+\newpage                                                          
 \input{intro.tex}
 \input{model.tex}
 \input{exp.tex}
 \input{related.tex}
 \input{conclusion.tex}
 
-%References and End of Paper
-%These lines must be placed at the end of your paper
 \balance
-\bibliographystyle{aaai}
+\bibliographystyle{acm}
 \bibliography{mybibtex}
 
 \end{document}
-
