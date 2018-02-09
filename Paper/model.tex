@@ -13,9 +13,64 @@ Assumption~\ref{model:assump:2} requires a more sophisticated analysis of the tw
 In the following of this section, we are dedicated to enrich our model.
 
 \subsection{Representing the Two Factors}
+\begin{table}[htbp]
+   \centering
+   \begin{tabular}{|c|c|} \hline 
+      Notation & Description \\ \hline
+      $\HFF $  & random variable of human factors \\ \hline
+      $\EFF $ & random variable of environmental factors \\ \hline
+      $ \FFF $ & binary random variable of fragility \\ \hline
+      $\FFS $ & fragility score \\ \hline
+   \end{tabular}
+\end{table}
 
 \subsection{Probabilistic Fragility Measure}
-In this part, we propose a novel method to quantify the fragility of a state or region, by considering both human and environmental factors in a probabilistic framework.
+In this part, we derive a novel fragile score, $\FFS$, which incorporates both environmental and human factors. The score $\FFS$ is based on probabilistic intuitions, and is therefore called the \emph{probabilistic fragility score}, or the fragility score for convenience.
+
+Without loss of generality, we refer to regions, sovereign states, and other concerned geographical entities as states.
+
+We assume that a state either fragile or stable, described by a binary random variable $\FFF$, where $\FFF=1$ if the considered state fragile, and $\FFF=0$ if it is stable. $\HFF$ and $\EFF$ are random variables describing the human and environmental factors of the state. For convenience, we further assume that $\EFF$ is binary, i.e. $\EFF=1$ when the state's environment is sustainable, and $\EFF=0$ when it is not. 
+
+Consider the probability of a state being fragile, given its human and environmental factors:
+\begin{equation}
+    \prob{(\FFF=1|\EFF=e, \HFF)} \ \ (e=0,1)
+\label{eqn:model:frag_prob}
+\end{equation}
+
+The probability given in~\ref{eqn:model:frag_prob} quantifies the extent of fragility of the state, given certain environmental and human factors. It is higher when the state is more vulnerable. However, the conditional distribution is hard to estimate. We then factorize it into a more easily calculated form: 
+\begin{equation}
+    \prob(\FFF=1|\EFF=e,\HFF)= \frac{\prob(\EFF=e, \FFF=1 | \HFF)}{\prob(\EFF=e | \HFF)} = \frac{\prob(\mathbf{Z}=1|\HFF)}{\prob(\EFF=e|\HFF)}\ \ (e = 0,1)
+    \label{eqn:model:frag_prob_fact}
+\end{equation}
+In which we defined a new random variable $\mathbf{Z}=1$ if $\EFF=e,\HFF=1$ and $\mathbf{Z}=0$ otherwise.
+Eqn.~\ref{eqn:model:frag_prob_fact} allows us to only estimate the conditional probability of two binary random variables given human factors $\HFF$.
+
+For convenience of calculation, we assume linear relationships: 
+\begin{eqnarray}
+   \log\frac{\prob(\mathbf{Z}=1|\HFF)}{\prob(\mathbf{Z}=0|\HFF)} & = & \mathbf{W}_1\HFF + \mathbf{e}_1 \nonumber \\
+   \log\frac{\prob(\mathbf{\EFF}=e|\HFF)}{\prob(\mathbf{\EFF}=1-e|\HFF)} & = & \mathbf{W}_2\HFF + \mathbf{e}_2 
+   \label{eqn:model:logistic_form}
+\end{eqnarray}
+
+Where $\mathbf{W}_i$ are parameters, $\mathbf{e}_i$ are Gaussian errors, $i=1,2$.
+
+Using the linear assumption and the logistic form in Eqn~\ref{eqn:model:logistic_form}, we obtain the estimate of the probabilities respectively:
+
+\begin{eqnarray}
+   \hat{p}_z & = & \frac{\exp(\mathbf{W}_1\HFF)}{1+\exp(\mathbf{W}_1\HFF)} \nonumber \\
+   \hat{p}_e & = & \frac{\exp(\mathbf{W}_2\HFF)}{1+\exp(\mathbf{W}_2\HFF)}
+   \label{eqn:model:prob_estimate}
+\end{eqnarray}
+
+In order to make the estimated probability distribution resemble the true distribution, we estimate parameters $\mathbf{W}_1, \mathbf{W}_2$ by minimizing the cross entropy loss, which is equivalent to minimizing the KL divergence~\reminder{reference needed} between the estimated distribution and the empirical distribution. \reminder{specific form omitted.}
+
+Finally, probabilities in Eqn.~\ref{eqn:model:frag_prob_fact} is replaced by the estimates given in Eqn.~\ref{eqn:model:prob_estimate}, yielding the \emph{probabilistic fragility score}:
+\begin{equation}
+  \label{eqn:model:frag_score}  
+  \FFS = \frac{\hat{p}_z}{\hat{p}_e}
+\end{equation}
+
+\paragraph{Notes on the fragility score.} The fragility score, $\FFS$, is derived based on probabilistic intuitions and linear assumptions. Higher $\FFS$ indicates higher risks of being fragile. However, the score $\FFS$ can be larger than one, and is, therefore, not in form of probability. However, it does not hurt its applicability: if the estimated $\hat{p}_z$ is larger than $\hat{p}_e$, we have even more reasons to believe that the considered state is fragile. 
 
 \subsection{The Relation between Factors and Fragility}
 In this part, we quantify the relationship between human factors and environmental factors. 
