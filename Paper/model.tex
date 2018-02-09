@@ -95,7 +95,7 @@ Finally, probabilities in Eqn.~\ref{eqn:model:frag_prob_fact} is replaced by the
 \subsection{Modeling the Interaction between Variables}
 We then begin to model the relationship between the three variables: environmental factors $\EFF$, human factors $\HFF$, and the fragility score $\FFS$. 
 
-\vpara{Direct Effect of Environmental Factors.} In order to measure the effect of environmental factors on fragility score, a naive approach would be to sample states of both sustainable environment and unsustainable environment, and compare their average fragility score. Formally, write $s^0_f$ as the average fragility score of the sustainable group, and $s^1_f$ as the average fragility score of the unsustainable group. One then compares the difference $s^*_f=s^0_f - s^1_f$.
+\subsubsection{Direct Effect of Environmental Factors} In order to measure the effect of environmental factors on fragility score, a naive approach would be to sample states of both sustainable environment and unsustainable environment, and compare their average fragility score. Formally, write $s^0_f$ as the average fragility score of the sustainable group, and $s^1_f$ as the average fragility score of the unsustainable group. One then compares the difference $s^*_f=s^0_f - s^1_f$.
 
 The above approach gives, however, biased estimation, because the apparent difference between these two groups may be depend on human factors that affected whether or not a state's environment is sustainable, instead of the environmental status per se. For example, the approach might compare scores of the states that are environmentally unsustainable and in political turmoil, with the scores of the states that are environmentally sustainably and politically stable. The difference of political status results in unbiased estimate of the effect of environmental factors.
 
@@ -117,7 +117,56 @@ Based on the newly obtained data set, we calculate the adjusted score difference
 
 Where $\hat{s}^0_f$, $\hat{s}^1_f$ are average scores of the sustainable and unsustainable group, drawn from the data set obtained by PSM.
 
-\vpara{Indirect Effect of Environmental Factors.}
+\subsubsection{Indirect Effect of Environmental Factors}
+In order to measure the indirect effect of environmental factors $\EFF$, we propose two candidate models: the moderator variable model, and the mediator variable model.
 
-% direct: propensity 
-% indirect: 调节效应，中介效应. 
+\reminder{is the difference clearly explained?}
+The moderator variable model assumes that the environmental factors influence the fragility score, and the relationship is calibrated by the effect of human factors. 
+In this case, the human factors $\HFF$ are called \emph{the moderator variable}, as illustrated in Figure~\ref{fig:model:indirect:moderator}.\reminder{reference.}
+
+The mediator variable model assumes that the environmental factors and human factors jointly influence the fragility score.
+Furthermore, the environmental factors influence the fragility score both directly, and indirectly through the human factors. The illustration of this model is as in Figure~\ref{fig:model:indirect:mediator}.\reminder{reference.}
+
+\vpara{Moderator variable model.}
+The model is written as 
+\begin{equation}
+    \FFS = \mathbf{W}_1\HFF + W_2\EFF + \sum_{i=1}^p \beta_i h_i \EFF 
+    \label{eqn:model:moderator_model}
+\end{equation}
+where $\HFF=\left[ h_1,\ldots,h_p \right]'$, and $h_i$ is the $i$th component of $\HFF$, indicating a specific factor. $\mathbf{W}$ and $\beta_i$ are parameters.
+
+The term, $\sum_{i=1}^p\beta_i h_i$, represents the effect of each human factor on the relation between the environmental factor and the fragility score, since by taking partial derivative, we observe that 
+\begin{equation*}
+    \frac{\partial s_f}{\partial \EFF} = W_2 + \sum_{i=1}^p \beta_i h_i
+\end{equation*}
+The derivative indicates that the effect of environmental factor $\EFF$ comes from both itself, described by $W_2$, and each human factor $h_i$, described by $\beta_i$. If the factor $h_i$ has no effect on the relation, then $\beta_i$ should be close to zero. Consider, therefore, the following statistical test:
+\begin{equation}
+    H_0: \beta_1=\beta_2=\ldots=\beta_p
+    \label{eqn:model:moderator:testall}
+\end{equation}
+The rejection of $H_0$ shows that the moderator effect of $\HFF$ is significant. 
+Furthermore, we wish to specifically investigate the effect of each factor. Hence in the following test,
+\begin{equation}
+   H_0:\beta_i=0 
+   \label{eqn:model:moderator:testi}
+\end{equation}
+if $H_0$ is rejected, we are confidence to say that the moderator effect of $h_i$ is statistically significant.
+
+If the moderator effect is indeed significant, then the extent of the effect of $\HFF$ is then quantified by $\mathbf{\beta} = \left[\beta_1,\ldots,\beta_p\right]'$ and respective components.
+
+\vpara{Mediator variable model.} 
+\reminder{Human factors are multivariate. Maybe consider human factors only as FSI, a single variable.}
+
+We first declare the following values:
+\begin{itemize}
+   \item $b_1$: the coefficient of the linear regression model, in which $\EFF$ predicts $\FFS$.
+   \item $b_2$: the coefficient of the linear regression model, in which $\HFF$ predicts $\FFS$.
+   \item $b_3$: the coefficient of $\EFF$ in the linear regression model in which $\EFF$ and $\HFF$ jointly predicts $\FFS$.
+   \item $b_3$: the coefficient of $\HFF$ in the linear regression model in which $\EFF$ and $\HFF$ jointly predicts $\FFS$.
+\end{itemize}
+
+First, we need to verify by statistical tests that $b_1$ and $b_2$ are significantly nonzero.
+
+If $\HFF$ indeed acts as a mediator variable, by model assumption, $b_4$ is significantly nonzero. Furthermore, since $\EFF$ indirectly influences $\FFS$ through $\HFF$, the explaining power of $\EFF$ alone should be reduced once $\HFF$ is introduced. In this case, $b_3 < b_1$.
+
+If all the above four conditions hold significantly, we are confident to say that human factors act as mediator variables, through which the environmental factors influence the fragility score.
