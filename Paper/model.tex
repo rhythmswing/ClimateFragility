@@ -1,4 +1,18 @@
 \section{Theoretical Analysis}
+\begin{figure}[t]
+   \centering
+   \subfigure[Moderator variable model]{
+       \includegraphics[width=.4\linewidth]{figs/model_moderator}
+       \label{fig:model:indirect:moderator}
+   } 
+   \subfigure[Mediator variable model]{
+       \includegraphics[width=.4\linewidth]{figs/model_mediator}
+       \label{fig:model:indirect:mediator}
+   }
+   %\label{fig:model:indirect}
+   \caption{Hypothesis models for indirect effect of environmental factors. $\EFF$ represents environmental factors, $\HFF$ represents human factors, and $\FFF$ represents state fragility. The fragility is jointly determined by $\EFF$ and $\HFF$, by two hypothesis approach.}
+\end{figure}
+\label{sec:model}
 In this part we propose theoretical framework for our analysis of the impact of climate change on \emph{state fragility}.
 \subsection{Assumptions and Model Framework}
 We propose two natural assumptions, based on which we derive the basic framework of our model. 
@@ -8,11 +22,15 @@ We propose two natural assumptions, based on which we derive the basic framework
 \end{enumerate}
 The assumptions are natural. Assumption~\ref{model:assump:1} requires to quantify the fragility which considers both human factors and environmental factors. We propose a novel framework to quantify fragility by incorporating the human and environmental factors into a probabilistic framework.
 
-Assumption~\ref{model:assump:2} requires a more sophisticated analysis of the two factors, including their respective and joint effects on the fragility, and the interaction between them. We are especially interested in the effects of environmental factors, which include \emph{direct} effect, which is the influence on fragility directly imposed by environmental factors; and \emph{indirect} effect, which is the influence on fragility imposed by envirionmental factors indirectly through human factors. The model is visualized in \reminder{A graphical illustration}.
+Assumption~\ref{model:assump:2} requires a more sophisticated analysis of the two factors, including their respective and joint effects on the fragility, and the interaction between them. We are especially interested in the effects of environmental factors, which include \emph{direct} effect, which is the influence on fragility directly imposed by environmental factors; and \emph{indirect} effect, which is the influence on fragility imposed by envirionmental factors indirectly through human factors. Two hypothesis model to explain the indirect effect is visualized in Figure~\ref{fig:model:indirect:moderator} and~\ref{fig:model:indirect:mediator}.
+
+The direct effect of environmental factors is measured by the effect of environmental factors on fragility score, with an unbiased estimation of the effect obtained by propensity score matching~\reminder{citation}. The indirect effect of environmental factors is explained by two models: the \emph{moderator variable} model, as shown in Figure~\ref{fig:model:indirect:moderator}; and the \emph{mediator variable} model, as shown in Figure~\ref{fig:model:indirect:mediator}.
+
 
 In the following of this section, we are dedicated to enrich our model.
 
 \subsection{Representing the Two Factors}
+\label{sec:model:rep}
 \begin{table}[htbp]
    \centering
    \begin{tabular}{|c|c|} \hline 
@@ -25,6 +43,8 @@ In the following of this section, we are dedicated to enrich our model.
 \end{table}
 
 \subsection{Probabilistic Fragility Measure}
+\label{sec:model:frag}
+\reminder{Need to emphasize that it is logistic regression.}
 In this part, we derive a novel fragile score, $\FFS$, which incorporates both environmental and human factors. The score $\FFS$ is based on probabilistic intuitions, and is therefore called the \emph{probabilistic fragility score}, or the fragility score for convenience.
 
 Without loss of generality, we refer to regions, sovereign states, and other concerned geographical entities as states.
@@ -72,9 +92,32 @@ Finally, probabilities in Eqn.~\ref{eqn:model:frag_prob_fact} is replaced by the
 
 \paragraph{Notes on the fragility score.} The fragility score, $\FFS$, is derived based on probabilistic intuitions and linear assumptions. Higher $\FFS$ indicates higher risks of being fragile. However, the score $\FFS$ can be larger than one, and is, therefore, not in form of probability. However, it does not hurt its applicability: if the estimated $\hat{p}_z$ is larger than $\hat{p}_e$, we have even more reasons to believe that the considered state is fragile. 
 
-\subsection{The Relation between Factors and Fragility}
-In this part, we quantify the relationship between human factors and environmental factors. 
+\subsection{Modeling the Interaction between Variables}
+We then begin to model the relationship between the three variables: environmental factors $\EFF$, human factors $\HFF$, and the fragility score $\FFS$. 
 
-\subsection{Measuring Direct and Indirect Effects}
+\vpara{Direct Effect of Environmental Factors.} In order to measure the effect of environmental factors on fragility score, a naive approach would be to sample states of both sustainable environment and unsustainable environment, and compare their average fragility score. Formally, write $s^0_f$ as the average fragility score of the sustainable group, and $s^1_f$ as the average fragility score of the unsustainable group. One then compares the difference $s^*_f=s^0_f - s^1_f$.
+
+The above approach gives, however, biased estimation, because the apparent difference between these two groups may be depend on human factors that affected whether or not a state's environment is sustainable, instead of the environmental status per se. For example, the approach might compare scores of the states that are environmentally unsustainable and in political turmoil, with the scores of the states that are environmentally sustainably and politically stable. The difference of political status results in unbiased estimate of the effect of environmental factors.
+
+To control for the differences of human factors between the sustainable group and the unsustainable group, we use the propensity score matching, a statistical technique that attempts to estimate unbiasly the effect of a variable, in this case, the environmental status.
+
+Formally, the propensity score of a certain state is defined as the conditional probability of the environmental status given its human factors,
+\begin{equation}
+   p=\prob(\EFF=1|\HFF)
+   \label{eqn:model:propensity}
+\end{equation}
+\reminder{environmental status? environmental factors? they are probably different.}
+In order to estimate the probability, we adopt similar procedures used in Section~\ref{sec:model:frag}, using the score of logistic regression, $\hat{p}$, of human factors $\HFF$ against environmental status $\EFF$. Then we match each of the unsustainable states to one sustainable state on propensity score, by using \emph{Nearest Neighbor Matching}: each unsustainable state is matched to the sustainable state whose propensity score is the closest. As such, a new data set in which the sustainable group and the unsustainable group and their propensity scores are balanced, is obtained. 
+
+Based on the newly obtained data set, we calculate the adjusted score difference:
+\begin{equation}
+   \hat{s}^*_f=\hat{s}^0_f - \hat{s}^1_f.
+   \label{eqn:model:score_diff_adj}
+\end{equation}
+
+Where $\hat{s}^0_f$, $\hat{s}^1_f$ are average scores of the sustainable and unsustainable group, drawn from the data set obtained by PSM.
+
+\vpara{Indirect Effect of Environmental Factors.}
+
 % direct: propensity 
 % indirect: 调节效应，中介效应. 
