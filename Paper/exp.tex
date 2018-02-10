@@ -30,7 +30,7 @@ Table~\ref{tab:exp:moderator} shows that the moderator effect is not significant
 \begin{table}[htbp]
     \centering
     \begin{tabular}{|l|cccc|} \hline
-        Variable & Model & Coef. & p-val. & Res.  \\ \hline
+        Variable & Model & Coef. & p-val. & Sign.  \\ \hline
         % \multirow{2}{*}{Human factors} & $\FFF\sim\HFF$ & -0.8349 & $<2e-16$ & Yes \\ \cline{2-5}
         Human factors & $\FFF\sim\HFF + \EFF$ & 1.009 & $<2e-16$ & Yes  \\ \hline        
         \multirow{3}{*}{Environmental factors} & $\HFF\sim\EFF$ & -0.8349 & $<2e-16$ & Yes \\ \cline{2-5}
@@ -44,10 +44,30 @@ Table~\ref{tab:exp:moderator} shows that the moderator effect is not significant
 \vpara{Mediator Effect.}
 Table~\ref{tab:exp:mediator:general} shows the result of the test of the mediator effect of human factors, represented by the FSI index. The results show that the effect of human factors on fragility is significant, and that the effect of environmental factors on fragility is significant, by corresponding coefficients in models $\FFF\sim\HFF+\EFF$ and $\HFF\sim\EFF$. In both models of $\FFF\sim\EFF$ and $\FFF\sim\HFF+\EFF$, the effects of human factors on the fragility are significant; furthermore, the absolute value of the coefficient is reduced by approximately $0.4$ once $\HFF$ is introduced. Therefore, the human factors act as a mediator variable, through which the environmental factors influence fragility. Furthermore, model $\FFF\sim\EFF$ shows that environmental factors also influence fragility directly. As such, a statistical proof of the mediator variable model in Section~\ref{sec:model:indirect} is complete.
 
+We are also interested in how the influence of environmental factors propagate through human factors. Therefore, we choose the 12 indicators used in the calculation of HSI index~\reminder{citation}, and construct a new regression model: $\FFF\sim\EFF+h_1+\ldots+h_12$, where $h_i$ is an individual factor. However, not all of the indicators are significant, therefore we attempt to find best subset of indicators that are significant by stepwise regression: at each step, we remove from the regression model an indicator that is statistically insignificant. Since previously removed indicator could be significant in the new model, we add at each step a previously removed indicator that has become significant to the regression model, if there is one. We stop when there is no insignificant indicator to remove and no significant indicator to add. 
+
+The used subset of indicators, their coefficients and significance are shown in Table~\ref{tab:exp:mediator:subset}.
+Experiments show that the impact of environmental change propagates mainly through demographic pressures, human flight and brain drain, and human rights. It also flows through group grievance in a less significant manner. Furthermore, it goes through Economy and refugee flows slightly. 
+
+\begin{table}[htbp]
+   \centering 
+   \begin{tabular}{|l|ccc|} \hline
+      Variable & Coef. & p-value & Sign. \\ \hline 
+       DP & 0.3009 & 0.00691 & High \\ \hline
+       HFBD & 0.2579 & 0.00287 & High \\ \hline
+       HR & 0.2424 & 0.00196 & High \\ \hline
+       GG & 0.1643 & 0.01824 & Medium \\ \hline
+       Econ. & 0.1380 & 0.08155 & Low \\ \hline
+       RI & 0.1275 & 0.08768 & Low \\ \hline
+   \end{tabular}
+   \caption{Best subset of mediator indicators. Rows are respectively: Demographic Pressures, Human Flight and Brain Drain, Human Rights, Group Grievance, Economy, and Refugees and IDPs.}
+   \label{tab:exp:mediator:subset}
+\end{table}
+
 \vpara{Conclusion on Indirect Effects.} Above experiments show that:
 \begin{itemize}
    \item The environmental factors and human factors both directly influence fragility;
-   \item Environmental factors also influence human factors, and human factors act as a mediator variable to pass the influence of the environmental factors to fragility. 
+   \item Environmental factors also influence human factors, and human factors act as a mediator variable to pass the influence of the environmental factors to fragility 
 \end{itemize}
 Which is illustrated in Figure~\ref{fig:model:indirect:mediator}. 
 
