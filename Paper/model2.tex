@@ -1,4 +1,13 @@
-
 \subsection{Temporal Model}
 % In Section~\ref{sec:model1} we analyzed in depth the relationship between the three variables: the environmental factors $\EFF$, the human factors $\HFF$, and the fragility score $\FFF$. 
 In order to better model climate change, we further consider time as a variable, and investigate how climate change would have influenced the fragility of states. Specifically, we choose China as an example state, and illustrate how and when it would reach a tipping point 
+
+为了预测该国家脆弱程度达到临界值的时间，我们首先建立如下具有普适性的时间序列分解模型：
+$$Y_t=T+S+C+I$$
+其中$Y_t$表示t时刻的脆弱性，T表示长期趋势，即数据中对时间的变化相对稳定的一部分因素，比如在当前的气候条件下下，虽然气温的变化存在波动，但总体存在着上升的趋势。S表示季节变动，传统的时间序列分解方法一般用在长期的宏观经济指标中，因此颗粒度是季度。C是循环变动，循环变动和季节变动比较类似，也有周期因素在，但是循环变动的周期是隐形的。I是随机波动，是不可预测的波动。
+
+具体来说，在气候的分析中，长期趋势是最重要的部分，表示了气候变化的总体趋势，而我们分析的数据是以年为单位的，因此我们不需要考虑数据的季节变动的部分，而气候变化在循环变动这部分主要受太阳系运动的周期变化的影响，其周期比较长，在几十年的气候研究中我们不考虑这一部分对模型的影响。而随机波动是由多种原因综合导致的，通常假定他是白噪声$WN(0,\sigam^2)$。
+
+这样我们就可以建立含确定性时间趋势的过程如下：
+$$Y_t=\alpha + \delta t + \epsilon _t$$
+其中$\epsilon_t$是白噪声过程，且$\epsilon_t \sim N(0,\sigma ^2)$，则上述模型满足经典回归假设，标准OLS t或F统计量将具有精确小样本t或F分布。但是考虑到气候的复杂性以及我们忽略了气候的循环变动，因此这里的$\epsilon_t$是修正后的误差，不再假定他是高斯分布，则我们使用求$\alpha$和$\delta$的OLS估计的渐进分布的技术，该技术不但对于研究时间趋势有用，而且对于分析各种非平稳过程的统计量也非常有用。
