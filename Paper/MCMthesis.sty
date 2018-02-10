@@ -1,4 +1,3 @@
-@@ -1,183 +0,0 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% ChinaTeX MCM Contest Report Template
 %% Template by ChinaTeX, <chinatexer@gmail.com>
@@ -15,9 +14,9 @@
 \RequirePackage{ifthen}         % logic options
 \RequirePackage{lastpage}       % refer to the number of last page
 \RequirePackage{listings}       % format source code
-\RequirePackage[toc,page,title,titletoc,header]{appendix}%ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½
+\RequirePackage[toc,page,title,titletoc,header]{appendix}%¸½Â¼ÖÆ×÷
 \RequirePackage{enumerate}
-%======ï¿½ï¿½Ñ§ï¿½ï¿½Ê½===========
+%======ÊıÑ§¹«Ê½===========
 \RequirePackage{amsthm,amsfonts}
 \RequirePackage{amsmath,bm}              % AMSLaTeX
 \RequirePackage{amssymb,mathrsfs}        % AMSLaTeX sym-bols
@@ -25,7 +24,7 @@
 
 %========
 \RequirePackage{subfigure}      %
-\RequirePackage{longtable,multirow,hhline, tabularx,array}       %@@ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+\RequirePackage{longtable,multirow,hhline, tabularx,array}       %@@±í¸ñÏà¹Ø
 \RequirePackage{flafter}
 \RequirePackage{pifont,calc}
 \RequirePackage{colortbl,booktabs}
@@ -53,27 +52,27 @@
     linkcolor=black,%
     citecolor=black,%
     pagecolor=black,%
-    colorlinks=true, %×¢ï¿½Íµï¿½ï¿½ï¿½ï¿½ï¿½ò½»²ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½É«ï¿½ß¿ï¿½(ï¿½ï¿½colorlinksï¿½ï¿½pdfborderÍ¬Ê±×¢ï¿½Íµï¿½)
-    pdfborder=001,   %×¢ï¿½Íµï¿½ï¿½ï¿½ï¿½ï¿½ò½»²ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½É«ï¿½ß¿ï¿½
+    colorlinks=true, %×¢ÊÍµô´ËÏîÔò½»²æÒıÓÃÎª²ÊÉ«±ß¿ò(½«colorlinksºÍpdfborderÍ¬Ê±×¢ÊÍµô)
+    pdfborder=001,   %×¢ÊÍµô´ËÏîÔò½»²æÒıÓÃÎª²ÊÉ«±ß¿ò
     linkcolor=black,%
     citecolor=black,%
     pagecolor=black,%
     urlcolor=black]{hyperref}
 \else
 \DeclareGraphicsExtensions{.eps,.ps}
-\RequirePackage[dvipdfm,  %pdflatex,pdftex    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ä·ï¿½Ê½ï¿½ï¿½Í¬
+\RequirePackage[dvipdfm,  %pdflatex,pdftex    ÕâÀï¾ö¶¨ÔËĞĞÎÄ¼şµÄ·½Ê½²»Í¬
             pdfstartview=FitH,%
             CJKbookmarks=true,%
             bookmarksnumbered=true,%
             bookmarksopen=true,%
-            colorlinks=true, %×¢ï¿½Íµï¿½ï¿½ï¿½ï¿½ï¿½ò½»²ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½É«ï¿½ß¿ï¿½(ï¿½ï¿½colorlinksï¿½ï¿½pdfborderÍ¬Ê±×¢ï¿½Íµï¿½)
-            pdfborder=001,   %×¢ï¿½Íµï¿½ï¿½ï¿½ï¿½ï¿½ò½»²ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½É«ï¿½ß¿ï¿½
+            colorlinks=true, %×¢ÊÍµô´ËÏîÔò½»²æÒıÓÃÎª²ÊÉ«±ß¿ò(½«colorlinksºÍpdfborderÍ¬Ê±×¢ÊÍµô)
+            pdfborder=001,   %×¢ÊÍµô´ËÏîÔò½»²æÒıÓÃÎª²ÊÉ«±ß¿ò
             linkcolor=black,%
             citecolor=black,%
             pagecolor=black,%
             urlcolor=black]{hyperref}
 \fi
-% Ê¹ï¿½ï¿½Æªï¿½ï¿½ï¿½Âµï¿½ï¿½×¶Î¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+% Ê¹ÕûÆªÎÄÕÂµÄÊ×¶Î¶¼ÓĞËõ½ø
 %\let\@afterindentfalse\@afterindenttrue\@afterindenttrue
 
 % style: page layout
@@ -118,12 +117,12 @@
 \setcounter{totalnumber}{6}
 \setcounter{topnumber}{3}
 \setcounter{bottomnumber}{3}
-%ï¿½Ü¶ï¿½ï¿½Ë·ï¿½ï¿½ï¿½È±Ê¡ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ë¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+%ºÜ¶àÈË·¢ÏÖÈ±Ê¡µÄ¸¡¶¯²ÎÊı¹ıÓÚÑÏ¸ñÁË¡£ÏÂÃæµÄÃüÁî
 \renewcommand{\textfraction}{0.15}
 \renewcommand{\topfraction}{0.85}
 \renewcommand{\bottomfraction}{0.65}
 \renewcommand{\floatpagefraction}{0.60}
-%ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½Éµï¿½Öµï¿½ï¿½---Ñ¡ï¿½Ô¡ï¿½Using Import graphics in LATEX2eï¿½ï¿½
+%½«¸¡¶¯²ÎÊıÖØĞÂÉèÖÃÎª¸ü¿íËÉµÄÖµ¡£---Ñ¡×Ô¡¶Using Import graphics in LATEX2e¡·
 
 \long\def\keywords{\par{\bfseries Key Words: }}
 \let\endkeywords\relax
