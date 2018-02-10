@@ -1,3 +1,4 @@
+
 \subsection{Temporal Model}
 % In Section~\ref{sec:model1} we analyzed in depth the relationship between the three variables: the environmental factors $\EFF$, the human factors $\HFF$, and the fragility score $\FFF$. 
 In order to better model climate change, we further consider time as a variable, and investigate how climate change would have influenced the fragility of states. 
@@ -9,14 +10,14 @@ Specifically, we choose China as an example state, and illustrate how and when i
 \end{equation}
 in which $\EFF$ is the environmental factor, $T$ represents long-term tendency, $S$ represents seasonal fluctuation, $C$ represents periodic fluctuation with an unknown period, and $I$ represents random fluctuation. This is a traditional temporal model; for specifics, readers may refer to~\reminder{reference}.
 
-The long-term tendency $T$ is the crucial ingredient. In the following analysis, we consider the temporal model on a yearly basis, and therefore ignore the seasonal fluctuation $S$. The periodic fluctuation in climate change is majorly manifested in the periodic movement of the solar system~\reminder{reference}, and the period is long enough to ignore in our study which considers only several decades of years. The random fluctuation $I$ is assumed in our analysis to be the white noise $\rm{WN}(0,\sigma^2)$.
+The long-term tendency $T$ is the crucial ingredient. In the following analysis, we consider the temporal model on a yearly basis, and therefore ignore the seasonal fluctuation $S$. The periodic fluctuation in climate change is majorly manifested in the periodic movement of the solar system~\reminder{reference}, and the period is long enough to ignore in our study which considers only several decades of years. The random fluctuation $I$ is assumed in our analysis to be the white noise. % $\rm{WN}(0,\sigma^2)$.
 
 Therefore, our model is expressed as 
 \begin{equation}
-    \EFF_t = \alpha +\delta t +\epsilon_t
+    E_t = \alpha +\delta t +\epsilon_t
    \label{eqn:model:temporal:tend} 
 \end{equation}
-where $t$ indicates time, $\EFF_t$ is the environmental factor at time $t$, $\epsilon_t \sim \rm{N}(0,\sigma^2)$ is a white noise. To estimate $\alpha$ and $\delta$, we utilize tools of traditional temporal analysis, the OLS estimate, to obtain the asymptotic distributions of parameters $\alpha$ and $\delta$.
+where $t$ indicates time, $E_t$ is the environmental factor at time $t$, $\epsilon_t \sim \rm{N}(0,\sigma^2)$ is a white noise. To estimate $\alpha$ and $\delta$, we utilize tools of traditional temporal analysis, the OLS estimate, to obtain the asymptotic distributions of parameters $\alpha$ and $\delta$.
 
 \hide{
 为了预测该国家脆弱程度达到临界值的时间，我们首先建立如下具有普适性的时间序列分解模型：
