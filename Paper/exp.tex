@@ -2,13 +2,48 @@
 \label{sec:exp}
 \subsection{Data Preparation}
 \label{sec:exp:prep}
+
+\vpara{Dataset.}
+% years
+
 We prepared several representative datasets for the variables we need: $\EFF$, $\HFF$, and $\FFF$.
+\vpara{Fragility Score Index.}
+
+\vpara{Environmental Performance Index.}
+
+\vpara{Other Indicators.}
+
+\subsection{Calculation of Fragility Score}
+In order to calculate fragility score defined in Section~\ref{sec:model:frag}, we need to identify, a priori, which states are fragile and which states are environmentally unstable. 
+In order to achieve so, we determine that a state is fragile, i.e. $\FFF=1$, if its FSI score is higher than a certain threshold $F_0$, and a state is environmentally fragile, i.e. $\EFF=1$, if its EPI score is lower than a certain threshold $E_0$. 
+The thresholds are chosen differently for each year, because the indexes of different years aren't necessarily calculated using the same methodology.
+Therefore, thresholds for each year are chosen to guarantee that the fragile states and environmentally fragile states occupy approximately $30\%$ of the states, respectively. As such, each state's status of fragility and environmental fragility is approximated by HSI and EPI indexes. Furthermore, we use the 12 indicators used in the calculation of FSI, specified in \reminder{specify somewhere}, as components of human factors $\HFF = \left[ h_1\ldots h_12 \right]$.
+
+Hence, all variables needed for the calculation of our fragility score, including $\HFF, \EFF, \FFF$, are specified for each state. Logistic regression was run as described in Section~\ref{sec:model:frag} to obtain fragility score of each state. Finally, we visualize the relationship between the score and the two indexes in Figure~\ref{fig:exp:frag_relation}.
+
+\begin{figure}[htbp]
+   \caption{Relationship between Fragility Score $\FFS$ and FSI and EPI.} 
+   \label{fig:exp:frag_relation}
+\end{figure}
 
 \subsection{Direct Effect of Environmental Factors}
 \label{sec:exp:direct}
 
+\begin{figure}[htbp]
+    \centering
+    \subfigure[General Effect] {
+        \includegraphics[width=.48\linewidth]{figs/fragility_treat}
+        \label{fig:exp:direct:general}
+    }
+    \subfigure[Specific Countries] {
+        \includegraphics[width=.48\linewidth]{figs/compare_score}
+        \label{fig:exp:direct:specific}
+    }
+    \caption{Direct Effect of Environmental Factors.}
+\end{figure}
+
 \subsection{Indirect Effect of Environmental Factors}
-\label{sec:exp:indirect}
+
 To measure the indirect effect of environmental factors, we modeled several regression models in Section~\ref{sec:model:indirect}. Specifically, we choose the EPI index and FSI index described in Section~\ref{sec:exp:prep} to represent the environmental factors $\EFF$ and human factors $\HFF$, respectively. The indexes are scaled and centralized, such that a comparsion of coefficients is meaningful.
 \begin{table}[htbp]
     \centering

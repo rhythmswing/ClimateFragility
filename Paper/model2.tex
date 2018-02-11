@@ -4,7 +4,15 @@
 % In Section~\ref{sec:model1} we analyzed in depth the relationship between the three variables: the environmental factors $\EFF$, the human factors $\HFF$, and the fragility score $\FFF$. 
 In order to better model climate change, we further consider time as a variable, and investigate how climate change would have influenced the fragility of states. 
 
-Specifically, we choose China as an example state, and illustrate how and when it would reach a tipping point. We build the following temporal model:
+Specifically, we choose China as an example state, and illustrate how and when it would reach a tipping point. The basic idea of our model is as illustrated in the formula below:
+\begin{equation}
+   E_t = \alpha E_{t-1} + \beta H_{t-1}
+   \label{eqn:mod:temporal_idea}
+\end{equation}
+In which we use the subscript $t$ to denote the value at time $t$.
+The first term embodies the autoregressive property of the environmental factor: its present status depends on its previous status. 
+
+\hide{
 \begin{equation}
     \EFF = T+S+C+I
    \label{eqn:model:temporal} 
@@ -19,6 +27,7 @@ Therefore, our model is expressed as
    \label{eqn:model:temporal:tend} 
 \end{equation}
 where $t$ indicates time, $E_t$ is the environmental factor at time $t$, $\epsilon_t \sim \rm{N}(0,\sigma^2)$ is a white noise. To estimate $\alpha$ and $\delta$, we utilize tools of traditional temporal analysis, the OLS estimate, to obtain the asymptotic distributions of parameters $\alpha$ and $\delta$.
+}
 
 \hide{
 为了预测该国家脆弱程度达到临界值的时间，我们首先建立如下具有普适性的时间序列分解模型：
