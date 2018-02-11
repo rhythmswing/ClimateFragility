@@ -1,4 +1,4 @@
-data <- read.csv('epi_hist.csv')
+data <- read.csv('epi_historical.csv')
 
 coef.sigs.g = c('gdp','gpc','gdp_growth','gpc_growth')
 #coef.sigs.g = c('gdp_growth','gpc_growth')
@@ -9,7 +9,7 @@ data_econ <- data[,coef.sigs.g]
 EPI <- data$EPI
 EPI_P <- data$EPI_P
 EPI_MA <- EPI_P
-beta=0.5
+beta=0.0
 for (i in 2:length(EPI_P)) {
   EPI_MA[i] = beta*EPI_MA[i-1]+(1-beta)*EPI_P[i]
 }

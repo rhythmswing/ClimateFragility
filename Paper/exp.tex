@@ -20,14 +20,32 @@ The thresholds are chosen differently for each year, because the indexes of diff
 Therefore, thresholds for each year are chosen to guarantee that the fragile states and environmentally fragile states occupy approximately $30\%$ of the states, respectively. As such, each state's status of fragility and environmental fragility is approximated by HSI and EPI indexes. Furthermore, we use the 12 indicators used in the calculation of FSI, specified in \reminder{specify somewhere}, as components of human factors $\HFF = \left[ h_1\ldots h_12 \right]$.
 
 Hence, all variables needed for the calculation of our fragility score, including $\HFF, \EFF, \FFF$, are specified for each state. Logistic regression was run as described in Section~\ref{sec:model:frag} to obtain fragility score of each state. Finally, we visualize the relationship between the score and the two indexes in Figure~\ref{fig:exp:frag_relation}.
-
 \begin{figure}[htbp]
+    \centering
+   \subfigure[EPI]{
+       \includegraphics[width=.4\textwidth]{figs/epifs}
+       \label{fig:exp:frag_relation:epi}
+   }
+   \subfigure[FSI]{
+       \includegraphics[width=.4\textwidth]{figs/fsifs}
+       \label{fig:exp:frag_relation:fsi}
+   }
    \caption{Relationship between Fragility Score $\FFS$ and FSI and EPI.} 
    \label{fig:exp:frag_relation}
 \end{figure}
+Figure~\ref{fig:exp:frag_relation:epi} shows that states with lower EPI indexes have higher scores in general, but the variance is high when the environment is worsened. Figure~\ref{fig:exp:frag_relation:fsi} shows that states with higher FSI obtain higher scores. 
+The figures show that HSI majorly determines $\FFS$, while EPI acts as an adjustment.
 
-\subsection{Direct Effect of Environmental Factors}
-\label{sec:exp:direct}
+\vpara{Consistency Test.}
+In order to show that $\FFS$ is a reasonable criterion of states' fragility, we need to make sure that a state which is completely better than another state, i.e. with higher EPI and lower FSI, obtains lower $\FFS$. In this case, we call that the two states are \emph{inconsistent}.
+We therefore define the average reverse number order $r$: 
+\begin{equation}
+   r\triangleq \frac{1}{2N}\sum_{k=1}^N \frac{r_k}{N}  = \frac{1}{2N^2}\sum_{k=1}^N r_k
+   \label{eqn:exp:reverse_order}
+\end{equation}
+where for the $k$th state in the dataset, $r_k$ is the number of other states that inconsistent with it.
+
+The $r_k$ calculated for the indexes in the year of 2017 is $0.01764$, which is sufficiently low to bring confidence to the fragility score $s_f$.
 
 \begin{figure}[htbp]
     \centering
@@ -108,6 +126,7 @@ Which is illustrated in Figure~\ref{fig:model:indirect:mediator}.
 
 \subsection{Temporal Model}
 \label{sec:exp:temporal}
+
 
 \subsection{Regional Model}
 \label{sec:exp:regional}
