@@ -1,5 +1,13 @@
 \section{Theoretical Analysis}
 \label{sec:model1}
+
+\begin{figure}[t]
+    \centering
+   \includegraphics[width=.8\linewidth]{figs/model} 
+   \caption{Hypothesis Model Illustration}
+   \label{fig:model:model}
+\end{figure}
+
 \begin{figure}[t]
    \centering
    \subfigure[Moderator variable model]{
@@ -16,6 +24,7 @@
 \label{sec:model}
 In this part we propose theoretical framework for our analysis of the impact of climate change on \emph{state fragility}.
 \subsection{Assumptions and Model Framework}
+Our hypothesis framework is illustrated in Figure~\ref{fig:model:model}.
 We propose two natural assumptions, based on which we derive the basic framework of our model. 
 \begin{enumerate}
    \item The \emph{state fragility}, a concept to estimate the sustainability of states, is dependent on and only on \emph{human factors} and \emph{environmental factors.} \label{model:assump:1}
@@ -25,10 +34,17 @@ The assumptions are natural. Assumption~\ref{model:assump:1} requires to quantif
 
 Assumption~\ref{model:assump:2} requires a more sophisticated analysis of the two factors, including their respective and joint effects on the fragility, and the interaction between them. We are especially interested in the effects of environmental factors, which include \emph{direct} effect, which is the influence on fragility directly imposed by environmental factors; and \emph{indirect} effect, which is the influence on fragility imposed by envirionmental factors indirectly through human factors. Two hypothesis model to explain the indirect effect is visualized in Figure~\ref{fig:model:indirect:moderator} and~\ref{fig:model:indirect:mediator}.
 
-The direct effect of environmental factors is measured by the effect of environmental factors on fragility score, with an unbiased estimation of the effect obtained by propensity score matching~\reminder{citation}. The indirect effect of environmental factors is explained by two models: the \emph{moderator variable} model, as shown in Figure~\ref{fig:model:indirect:moderator}; and the \emph{mediator variable} model, as shown in Figure~\ref{fig:model:indirect:mediator}.
+The direct effect of environmental factors is measured by the effect of environmental factors on fragility score, with an unbiased estimation of the effect obtained by propensity score matching~\reminder{citation}. The indirect effect of environmental factors can be explained by two hypothesis models: the \emph{moderator variable} model, as shown in Figure~\ref{fig:model:indirect:moderator}; and the \emph{mediator variable} model, as shown in Figure~\ref{fig:model:indirect:mediator}. We verify these two hypothesis.
 
+In the following of this section, we are dedicated to enrich our model by developing several key ingredients: 
+\begin{enumerate}
+   \item A novel fragility score measure incorporating both environmental and human factors;
+   \item The interaction pattern between human factors, envirionmental factors, and the fragility;
+   \item The temporal model of a state's environmental status.
+\end{enumerate}
 
-In the following of this section, we are dedicated to enrich our model.
+The basic framework is sufficient to cover most of the requirements of the tasks.
+Furthermore, we discuss strengthes and weaknesses respectively in each part.
 
 \subsection{Representing the Two Factors}
 \label{sec:model:rep}
@@ -42,6 +58,22 @@ In the following of this section, we are dedicated to enrich our model.
       $\FFS $ & fragility score \\ \hline
    \end{tabular}
 \end{table}
+
+\begin{figure}[t]
+    \centering
+    \subfigure[FSI]{
+        \includegraphics[width=.4\linewidth]{figs/epi}
+        \label{fig:model:indexes:fsi}
+    }
+    \subfigure[EPI]{
+        \includegraphics[width=.4\linewidth]{figs/epi}
+        \label{fig:model:indexes:epi}
+    }
+    \caption{The two fragility indexes.}
+    \label{fig:model:indexes}
+\end{figure}
+
+\vpara{Environmental Performance Index.} It is an index to evaluate a state's environmental performance by~\reminder{Who and citation}. It is composed of indicators in ecosystem vitality and environmental health. 
 
 \subsection{Probabilistic Fragility Measure}
 \label{sec:model:frag}
