@@ -15,12 +15,12 @@ To examine the moderator effect, we establish a linear regression model:
 \end{equation}
 where
 \begin{equation}
-   S= \sum\rm{E}_k + \sum\rm{P}_k + \sum\rm{S}_k + \sum\rm{C}_k
+   S= \sum\rm{E}_k + \sum\rm{P}_k + \sum\rm{S}_k + \sum\rm{C}_k + \sum\rm{X}_k
 \end{equation}
-is the sum of economic, political, social, and cohesion indicators used in FSI index, as in Table~\ref{}\reminder{somewhere}. 
+is the sum of economic, political, social, cohesion indicators, and external indicators used in FSI index, as in Table~\ref{}\reminder{somewhere}. 
 The second term is the effect of moderators. 
 
-We select significant variables from the regression model in Eqn.~\ref{eqn:eqn:indirect:moderator:reg} by bidirectional step regression. The selected variables, their coefficients, p-value and level of significance are listed in Table~\ref{tab:exp:indirect:moderator:case1}.
+We select significant variables from the regression model in Eqn.~\ref{eqn:indirect:moderator:reg} by bidirectional step regression. The selected variables, their coefficients, p-value and level of significance are listed in Table~\ref{tab:exp:indirect:moderator:case1}.
 
 \begin{table}[htbp]
     \centering
@@ -41,12 +41,8 @@ We select significant variables from the regression model in Eqn.~\ref{eqn:eqn:i
 
 We see that E1, E2, P3 appears both individually in Table~\ref{tab:exp:indirect:moderator:case1} and also as factors of cross products. Therefore, EPI moderates the relations between these variables and fragility. There is no other variable that appear individually; therefore, we are confident that EPI act as a moderator between human factors and fragility.
 
-\vpara{Mediator Effect}
-EPI's direct impact on fragility is already verified in Table~\ref{tab:exp:direct} and Table~\ref{tab:exp:indirect:moderator:case1}, since predicting fragility using EPI alone would result in a even higher level of significance as in the model of Table~\ref{tab:exp:indirect:moderator:case1}.
-
-We verify the role of human factors by establishing regression models in which EPI is used to predict each individual indicator of FSI. When EPI significantly predicts an indicator, we establish another regression model, in which EPI and the indicator jointly predict fragility. 
-
-We analyzed the indirect of environmental factors when EPI is high: both moderator and mediator effects take place. EPI moderates the relation of these following human factors:
+To conclude,
+EPI moderates the relation of these following human factors:
 \begin{itemize}
     \item Economic Decline
     \item Uneven Economic Development
@@ -54,6 +50,12 @@ We analyzed the indirect of environmental factors when EPI is high: both moderat
     \item Refugees and IDPs 
 \end{itemize}
 Indeed, environmental performance does not have a clear and direct relationship with these variables. The moderator effect of environment on many economic indicators can be explained by Kuznets curve~\reminder{reference}.
+
+
+\vpara{Mediator Effect}
+EPI's direct impact on fragility is already verified in Table~\ref{tab:exp:direct} and Table~\ref{tab:exp:indirect:moderator:case1}, since predicting fragility using EPI alone would result in a even higher level of significance as in the model of Table~\ref{tab:exp:indirect:moderator:case1}.
+
+We verify the role of human factors by establishing regression models in which EPI is used to predict each individual indicator of FSI. When EPI significantly predicts an indicator, we establish another regression model, in which EPI and the indicator jointly predict fragility. 
 
 These following indicators are mediator variables, through which environmental factors indirectly exhibit influence on fragility:
 \begin{itemize}
@@ -70,6 +72,7 @@ We establish a regression model, using EPI to predict fragility, for states with
 However, the coefficient of EPI in this case is $ -0.0003162 $, with p-value being 0.225. EPI is insignificant, which is also verified in Figure~\ref{fig:exp:frag_relation:epi}. Since environment does not influence fragility directly, mediator effect is impossible.
 
 \begin{table}[htbp]
+\centering        
    \begin{tabular}{|l|ccc|}\hline
     Var. & Coef. & P-val. & Level \\ \hline
       C1 & 6.174e-4 & 0.033153 & Medium \\ \hline
@@ -77,16 +80,53 @@ However, the coefficient of EPI in this case is $ -0.0003162 $, with p-value bei
       C3 & 6.624e-3 & 0.001896 & High \\ \hline
       E1 & 9.62e-3 & 0.004577 & High \\ \hline
       E3 & -4.759e-3 & 1.63e-14 & Super \\ \hline
-      F1 &
+      P1 & 8.484e-3 & 0.006177 & High \\ \hline
+      P3 & -1.391e-2 & 0.000802 & High \\ \hline
+      S2 & 2.320e-3 & 5.95e-8 & Super \\ \hline
+      X1 & 7.863e-4 & 0.005399 & High \\ \hline
+      EPI$\times$C3 & -1.68e-4 & 0.000992 & Medium \\ \hline
+      EPI$\times$P3 & 3.123e-4 & 0.000822 & Medium \\ \hline
    \end{tabular}
+   \caption{Moderator Effect when EPI$<50$}
+   \label{tab:exp:indirect:moderator:case2}
 \end{table}
 
-\subsubsection{调节效应}
-在上面的分析中我们看到对于环境情况较差的国家来说，环境并不会通过中介效应对国建脆弱产生影响，但这并不意味着环境就对国家脆弱没有影响，事实上我们可以想到的是，国家的环境的好坏可能会改变人为因素对于国家脆弱的影响，即便现在的环境已经很糟糕了，虽然环境本身的改变不会改变国家脆弱，但是会影响其他因素对国家脆弱的影响，这也就是环境因素的调节作用，下面我们来验证环境因素的调节效应——在模型中加入EPI和EPI与FSI各项指标的乘积作为交叉项，加入上述的回归模型中，验证交叉项的系数的显著性，我们得到下面的回归方程：
-$$Fragile = 9.399 \times 10^{-1} + 6.17 \times 10^{-4} C_1 -1.33 \times 10^{-3} C_2 +6.62 \times 10^{-3}C_3+9.62 \times 10^{-3}E_1 -4.759 \times 10^{-3}E_3 +8.484 \times 10^{-3} F_1 -1.391 \times 10^{-2} F_3+2.320 \times 10^{-3} S_2 +7.863 \times 10^{-4} X_1 -1.68 \times 10^{-4} EPI \times C_3 +3.123\times 10^{-4} EPI\times F_3$$
-观察上面的回归方程我们可以看到回归方程中出现的交叉项有$EPI\times C_3,EPI\times F_3$，这两个因素的含义分别是集体诉讼和人权，也是和环境看起来没有直接因果关系的因素，因此环境在其中扮演的作用是环境影响了这两个因素对国家脆弱的影响，因为这些因素会显著的影响国家的脆弱，环境因素起到的作用是在不同的环境条件下，这些因素对国家脆弱的影响会出现不同。
+\vpara{Moderator Effect.} The result of moderator effect when EPI$<50$ is in Table~\ref{tab:exp:indirect:moderator:case2}.
 
-综合上面两个部分，对于环境较差的国家，环境对于国家脆弱的间接影响只体现在调节效应中，因为此时环境继续恶化本身不会直接改变国家的脆弱情况，但是一些因素对国家脆弱的影响在不同的环境条件下回出现不同，因此环境条件会通过这样的调节作用间接影响国家脆弱。所以在没有中介效应的情况下，我们不需要对中介因素再做检验，上述的调节效应的模型就是这些国家的最终模型。
+Although the state is fragile, and its fragility is insensitive to environmental change, environments moderates the impact of two human factors, C3 and P3, as clearly demonstrated in the table. C3 and P3 are respectively Group Grievance and Human Rights and Rule of Law.
+
+\subsection{Case Study}
+\vpara{A Fragile State: Iraq.} 
+Iraq is, by FSI, one of the 10 most fragile states in the world. 
+Also, the EPI Index of Iraq is below 50, the tipping point for environment performance. 
+Using regression model in Eqn.~\ref{eqn:indirect:moderator:reg} and coefficients in Table~\ref{tab:exp:indirect:moderator:case2}, we calculate the fragility score of Iraq to be 0.962, while the fragility score of Iraq calculated in Section~\ref{sec:exp:frag} is 0.9615. The low residual verifies the efficiency of our model for environmentally fragile states.
+
+Utilizing PSM, we find that the direct impact of environmental fragility on FSI score of Iraq is -0.075.
+
+By taking partial derivative, we obtain
+$$
+\frac{\partial{s_f}}{\partial{\rm{EPI}}} = -1.68 \times 10^{-4} \rm{C3} + 3.123 \times 10^{-4}\rm{P3}
+$$
+Where C3 is for Group Grievance, and P3 is for Human Rights and Rule of Law. 
+Plugging in the values of corresponding indicators, we obtain that  
+$$
+\\frac{\partial{s_f}}{\partial{\rm{EPI}}} = -1.6128\times 10^{-3} +2.7170 \times 10^{-3} = 0.0075 $$
+
+Combining direct and indirect effect, we see that decreasing EPI leads to increase in fragility of Iraq. Bad environment leads to more fragile state.
+
+We may further investigate the moderator effect of EPI. If we see EPI as a constant, the coefficient of C3 can be seen as $-1.68e-4\rm{EPI}+6.624e-3$, and the coefficient of P3 is $3.123e-4\rm{EPI} - 1.391e-2 $. That is to say, decreasing EPI would amplify the effect of Group Grievance and Human Rights and Rule of Law. 
+
+To explain, Group Grievance focuses on divisions and schisms between different groups in society, and is incluced by inequal distribution of resources, divisions, and communal violence.\reminder{fsi introduction}
+Since further deterioration of environmental performance in a fragile state would deplete resources, such effect is expectable. This also creates human rights issues, since bad environment in this case could even harm people's basic right of living. 
+
+\vpara{A Stable State: Mauritius}
+Mauritius is a country whose EPI is larger than the threshold 50, and is not in the list of top ten vulnerable in terms of FSI index. The fragility score is $0.315$, confirming that it is comparably stable.
+
+The direct effect calculated by PSM is -0.047. As we analyzed, environmental performance's indirect effect is exhibited both as a moderator variable and a mediator variable. 
+
+By similar analysis in the last part, we find that better environmental performance alleviates the pressures of human rights (P3), uneven economic development (E2), and economic decline(E1). 
+
+Unlike for environmentally fragile states, the moderator effect takes place. For Mauritius, increase of environmental performance would improve its public services and alleviate its demographic pressures.
 
 
 \hide{
@@ -141,5 +181,6 @@ $$\frac{\partial{Fragile}}{\partial{EPI}} = -1.6128\times 10^{-3} +2.7170 \times
 因为对于环境指标大于转折点的国家来说，间接影响分成了调节效应和中介效应，而中介效应是能够统一在调节效应中的，因此我们直接通过调节效应的模型来分析环境对国家脆弱的影响，类似上面的做法，我们对EPI求偏导：
 $$\frac{\partial{Fragile}}{\partial{EPI}} = 0.0050534 - 0.004889E_1 +0.006458E_2 - 0.0056F_3 - 0.00461S_2$$
 下面带入毛里求斯的实际指标，计算得到偏导数为0.022，同样的，在这个模型的分析中我们也需要通过PSM分析环境对国家脆弱的直接影响，带入毛里求斯的EPI计算得到直接影响为-0.047，综合直接和间接影响两项指标，我们可以得到环境对国家脆弱的总影响为-0.025，这是符合预期的。
+
 
 }
