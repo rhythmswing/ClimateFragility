@@ -1,6 +1,15 @@
-%=====================��=======��==============================
-\documentclass[a4paper,12pt]{article}%\documentclass[a4paper,12pt,titlepage]{article}
-\usepackage[22222222]{MCMthesis}  %�Ӻ���������д
+\documentclass[notitlepage]{mcmthesis}
+%\renewcommand\appendix{\setcounter{secnumdepth}{-2}}
+\mcmsetup{tcn= 87207, problem = E,
+    sheet = true, titleinsheet = false, keywordsinsheet = false,
+    titlepage = false, abstract = false}
+\setlength{\parskip}{0.1\baselineskip}
+\usepackage{amsmath, amssymb, graphics, setspace}
+
+\newcommand{\mathsym}[1]{{}}
+\newcommand{\unicode}[1]{{}}
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}  
+\setlength{\parindent}{0em}
 
 \usepackage{palatino}
 \usepackage{times}
@@ -33,6 +42,7 @@
 \usepackage{booktabs}
 \usepackage{makecell}
 \usepackage{float}
+
 
 
 \setlength\parskip{.8\baselineskip}
@@ -79,27 +89,60 @@
 
 \sloppy
 
-\renewcommand\arraystretch{1.3}
 
-
-\title{21st Century Newton}
-\author{Tai Wang, Hao Zhou, Rui Feng \\ \small Zhejiang University}
+\setkeys{Gin}{keepaspectratio, width=1 \textwidth}
+\bibliographystyle{IEEEtran}
+\title{
+    A Human-oriented Merging Model for New Jersey}
+\author{Bian Song}
 \date{\today}
 \begin{document}
-\maketitle
-\input{abstract.tex}                                              
-\newpage                                                          
-\tableofcontents                                                  
-\newpage                                                          
+    
+    
+    
+    \begin{abstract}
+        
+
+    \end{abstract}
+    
+    \maketitle
+    
+    
+    \begin{center}
+        \textbf{\LARGE{A Refined Fragility Metric Based on Statistics}}
+    \end{center}
+    %\tableofcontents
+    
+    \setcounter{page}{1}
+
+
 \input{intro.tex}
 \input{model1.tex}
 \input{model2.tex}
 \input{exp.tex}
-\input{related.tex}
+\input{disc.tex}
 \input{conclusion.tex}
 
-\balance
-\bibliographystyle{acm}
+
 \bibliography{mybibtex}
 
+
+
+\begin{appendices}
+
+\end{appendices}
 \end{document}
+
+%% 
+%% This work consists of these files mcmthesis.dtx,
+%%                                   figures/ and
+%%                                   code/,
+%% and the derived files             mcmthesis.cls,
+%%                                   mcmthesis-demo.tex,
+%%                                   README,
+%%                                   LICENSE,
+%%                                   mcmthesis.pdf and
+%%                                   mcmthesis-demo.pdf.
+%%
+%% End of file `mcmthesis-demo.tex'.
+

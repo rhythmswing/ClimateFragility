@@ -5,7 +5,13 @@ When EPI is small, the change of fragility with respect to EPI is little. When E
 Therefore, we establish different models for states which are below and higher than the threshold, respectively, to explain the indirect effect of environmental factors in terms of moderator and mediator effects formulated in Section~\ref{sec:model:indirect}.
 
 \subsubsection{When the Index $\rm{EPI} > 50$}
-These states are comparably environmentally stable. For these states, change of environment significantly influence fragility. 
+These states are comparably environmentally stable. For these states, change of environment significantly influence fragility. The relationship is illustrated in Figure~\ref{fig:exp:indirect:case2}.
+\begin{figure}[tbp]
+    \centering
+   \includegraphics[width=.4\linewidth]{figs/larger50.eps} 
+   \caption{Illustration of Effects of Environmental Performance when EPI $> 50$}
+   \label{fig:exp:indirect:case2}
+\end{figure}
 
 \vpara{Moderator Effect}
 To examine the moderator effect, we establish a linear regression model:
@@ -23,6 +29,7 @@ The second term is the effect of moderators.
 We select significant variables from the regression model in Eqn.~\ref{eqn:indirect:moderator:reg} by bidirectional step regression. The selected variables, their coefficients, p-value and level of significance are listed in Table~\ref{tab:exp:indirect:moderator:case1}.
 
 \begin{table}[htbp]
+    \small
     \centering
    \begin{tabular}{|l|ccc|}\hline
       Var. & Coef. & P-val. & Level \\ \hline
@@ -73,6 +80,7 @@ However, the coefficient of EPI in this case is $ -0.0003162 $, with p-value bei
 
 \begin{table}[htbp]
 \centering        
+\small
    \begin{tabular}{|l|ccc|}\hline
     Var. & Coef. & P-val. & Level \\ \hline
       C1 & 6.174e-4 & 0.033153 & Medium \\ \hline

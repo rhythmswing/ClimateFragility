@@ -12,13 +12,19 @@ We prepared several representative datasets for the variables we need: $\EFF$, $
 \vpara{Environmental Performance Index.}
 
 \vpara{Other Indicators.}
+Other indicators include:
+\begin{itemize}
+   \item Gross Domestic Product (GDP) (constant 2010 US dollar) 
+   \item GDP growth rate
+\end{itemize}
+which is acquired from World Bank Databank~\reminder{citation}.
 
 \subsection{Calculation of Fragility Score}
 \label{sec:exp:frag}
 In order to calculate fragility score defined in Section~\ref{sec:model:frag}, we need to identify, a priori, which states are fragile and which states are environmentally unstable. 
 In order to achieve so, we determine that a state is fragile, i.e. $\FFF=1$, if its FSI score is higher than a certain threshold $F_0$, and a state is environmentally fragile, i.e. $\EFF=1$, if its EPI score is lower than a certain threshold $E_0$. 
 The thresholds are chosen differently for each year, because the indexes of different years aren't necessarily calculated using the same methodology.
-Therefore, thresholds for each year are chosen to guarantee that the fragile states and environmentally fragile states occupy approximately $30\%$ of the states, respectively. As such, each state's status of fragility and environmental fragility is approximated by HSI and EPI indexes. Furthermore, we use the 12 indicators used in the calculation of FSI, specified in \reminder{specify somewhere}, as components of human factors $\HFF = \left[ h_1\ldots h_12 \right]$.
+Therefore, thresholds for each year are chosen to guarantee that the fragile states and environmentally fragile states occupy approximately $30\%$ of the states, respectively. As such, each state's status of fragility and environmental fragility is approximated by HSI and EPI indexes. Furthermore, we use the 12 indicators used in the calculation of FSI, specified in Section\ref{sec:exp:prep} as components of human factors $\HFF = \left[ h_1\ldots h_12 \right]$.
 
 Hence, all variables needed for the calculation of our fragility score, including $\HFF, \EFF, \FFF$, are specified for each state. Logistic regression was run as described in Section~\ref{sec:model:frag} to obtain fragility score of each state. Finally, we visualize the relationship between the score and the two indexes in Figure~\ref{fig:exp:frag_relation}.
 \begin{figure}[htbp]
@@ -214,6 +220,3 @@ We are interested in the cost of environmental protection. The investment is cal
 Therefore, annual cost of environmental protection is $(\alpha-t\mu)G_t$.
 
 Figure~\ref{fig:exp:tradeoff} shows a trade-off between fast economic development and environmental protection. \reminder{need to show when the contribution is larger than the side effect.}
-
-\subsection{Regional Model}
-\label{sec:exp:regional}
