@@ -1,43 +1,74 @@
 
 \subsection{Temporal Model}
 \label{sec:model2}
+\reminder{hypothesis need to be specified here.}
 % In Section~\ref{sec:model1} we analyzed in depth the relationship between the three variables: the environmental factors $\EFF$, the human factors $\HFF$, and the fragility score $\FFF$. 
 In order to better model climate change, we further consider time as a variable, and investigate how climate change would have influenced the fragility of states. 
+We begin by formulating the following assumptions:
+\begin{itemize}
+    \item The evolution of climate change is a Markov process, i.e. $E_t$ is dependent on $E_{t-1}$ and independent of $k<t-1$.
+    \item Human factors act as a moderator of EPI: it moderates the relation between $E_{t-1}$ and $E_t$.
+    \item Human factors are majorly embodied in economic status.
+\end{itemize}
+The first hypothesis is for convenience of modeling. The term "moderator" in the second hypothesis is in consistence with the definition in Section~\ref{sec:model:indirect}. The third hypothesis is because we consider factors at the country level, therefore we reasonably assume that economic status is representative.
 
-Specifically, we choose China as an example state, and illustrate how and when it would reach a tipping point. The basic idea of our model is as illustrated in the formula below:
+The idea of the hypothesis is simple: one may imagine that today's environment depends on yesterday's environment. Without invervention, the environment evolves all by itself. With the presence of human activity, the evolution of environment is "moderated" by human factors. 
+
+We use EPI index as an indicator of environmental status and establish a temporal model of EPI to investigate climate change.
+Specifically, we choose Mauritius as an example state, and illustrate how and when it would reach a tipping point. The basic idea of our model is as illustrated in the formula below:
 \begin{equation}
-   E_t = \alpha E_{t-1} + \beta H_{t-1}
+   E_t = \beta_0 E_{t-1} + \beta_1 H_{t} + \beta_2 H_{t}\times E_{t-1}
    \label{eqn:mod:temporal_idea}
 \end{equation}
 In which we use the subscript $t$ to denote the value at time $t$.
 The first term embodies the autoregressive property of the environmental factor: its present status depends on its previous status. 
+THe second term formulates human factors. Since we assumed that economic status is representative, in experiments in Section~\ref{sec:exp:temporal}, we would use GDP and GDP growth as indicators of human factors.
+The third term represents the mediator effect of human factors, derived from the second hypothesis. 
 
+One may notice that predicting $E_t$ requires knowing $H_{t}$ a priori, which is impossible. In order to approximate the evolution of climate change, we establish another temporal model to predict $H_t$, which is, in this case, GDP growth. 
+
+\vpara{Modeling GDP growth}
+We propose using ARIMA, a typical model widely used for time series forcasting, to model the time series of GDP growth rate.
+Generally, the model establishes that
+\begin{equation}
+   Y_t = \sum_{i=1}^p a_i Y_{t-i} +\sum_{i=0}^q b_i \epsilon_{t-i}
+   \label{eqn:model2:arima}
+\end{equation}
+\begin{equation}
+   Y_t = E_t - E_{t-k}
+   \label{eqn:model2:arima_diff}
+\end{equation}
+where $p$, $q$, $k$ are hyperparameters, $a_i$, $b_i$ are parameters to be estimated. 
+The first sum in Eqn~\ref{eqn:model2:arima} is the autoregressive term, and the second sum is the moving average of white noises, where $\epsilon_{t-i}\sim \rm{N}(0,1)$. Eqn.~\ref{eqn:model2:arima_diff} performs differencing, where $k$ is the order of differencing, to guarantee that the time series to be modeled is stationary.
+
+Due to lack of space, the detailed description of this model is omitted. We encourage inerested readers to see detailed description in \reminder{where?}.
+
+\vpara{Modeling Government Invervention and Economic Boom}
+Where the environment deteriorates, the government should step in to prevent the environment from becoming fragile. 
+History of the development of many countries, such as UK and China, shows that fast economic development could be at the expense of environment performance. 
+This is in consistence with the experiment results of our model, discussed in detail in Section~\ref{sec:exp:temporal}.
+
+The forcase of GDP growth is generally stable by our model, as shown in Figure~\ref{fig:exp:future:gdp}. To model fast economic development at the cost of environment, we introduce the following two parameters:
+\begin{itemize}
+  \item $\alpha$: the government investment to neutralize environment deterioration;
+  \item $\mu$: the economic boom factor.
+\end{itemize}
+Specifically, the economic boom brings additional $\mu$ GDP growth every year. The government uses $\alpha$ of the annual GDP to ease the negative impact of fast economic development. It does not mean that the annual GDP or GDP growth rate is decreased by $\alpha$; the effect of government intervention is manifested in EPI. The specific implementation is described in Section~\ref{sec:exp:temporal}.
+
+In reality, the growth rate of GDP doesn't necessarily increase at a regular speed. In settings of fast economic development, for example, China, the GDP growth rate is jumped to a high level which is sustained for quite a long period of time, instead of growing steadily to a high level. However, our model setting is sufficient for stimulating the effect of high economic growth.\reminder{why? need a better reason.}
 
 \hide{
-\begin{equation}
-    \EFF = T+S+C+I
-   \label{eqn:model:temporal} 
-\end{equation}
-in which $\EFF$ is the environmental factor, $T$ represents long-term tendency, $S$ represents seasonal fluctuation, $C$ represents periodic fluctuation with an unknown period, and $I$ represents random fluctuation. This is a traditional temporal model; for specifics, readers may refer to~\reminder{reference}.
+\section{GDP的时间序列分析}
+为了探究GDP的增长关系，我们采用时间序列分析，为了确定GDP增速的模型，我们首先画出GDP时间序列的图线变化，通过观察我们希望用ARIMA模型去拟合GDP增速关于时间的变化，并且通过时间序列的线性预报来预测未来的GDP增速。
 
-The long-term tendency $T$ is the crucial ingredient. In the following analysis, we consider the temporal model on a yearly basis, and therefore ignore the seasonal fluctuation $S$. The periodic fluctuation in climate change is majorly manifested in the periodic movement of the solar system~\reminder{reference}, and the period is long enough to ignore in our study which considers only several decades of years. The random fluctuation $I$ is assumed in our analysis to be the white noise. % $\rm{WN}(0,\sigma^2)$.
+观察GDP增速的曲线变化我们可以发现GDP增速并不是一个平稳序列，上下的波动略有偏差，因此我们对原数据取一阶差分之后观察图形看到现在的数据基本属于平稳序列，因此我们可以在现在的基础上检验一阶差分序列的自相关系数和偏相关系数来对AR模型和MA模型定阶——即我们对一阶差分序列计算ACF和PACF，可以看到AR模型中p取5，MA模型中q取1，因此原数据就是一个ARIMA（5,1,1）序列，我们用该模型去拟合历年的GDP增速的数据就可以得到ARIMA模型的参数估计，从而得到ARIMA模型的表达式，并且可以通过该表达式对未来的数据进行预测。
 
-Therefore, our model is expressed as 
-\begin{equation}
-    E_t = \alpha +\delta t +\epsilon_t
-   \label{eqn:model:temporal:tend} 
-\end{equation}
-where $t$ indicates time, $E_t$ is the environmental factor at time $t$, $\epsilon_t \sim \rm{N}(0,\sigma^2)$ is a white noise. To estimate $\alpha$ and $\delta$, we utilize tools of traditional temporal analysis, the OLS estimate, to obtain the asymptotic distributions of parameters $\alpha$ and $\delta$.
-}
+因为我们是通过求一阶差分得到的模型，所以有
+$$Y_t=X_t-X_{t-1}$$
+对于${Y_t}$我们有如下的ARMA(5,1)模型：
+$$Y_t = -0.0272Y_{t-1}+0.0068Y_{t-2}-0.1737Y_{t-3}-0.1180Y_{t-4}-0.3246Y_{t-5}+ \epsilon_t -0.8278\epsilon_{t-1}$$
+通过带入$Y_t$的表达式，我们就可以得到GDP增速的模型为：
+$$X_t = 0.9728X_{t-1}-0.0194X_{t-2} -0.1805X_{t-3}+0.0557X_{t-4}+0.2166X_{t-5} + 0.3246X_{t-6} +\epsilon_t -0.8278\epsilon_{t-1}$$
 
-\hide{
-为了预测该国家脆弱程度达到临界值的时间，我们首先建立如下具有普适性的时间序列分解模型：
-$$Y_t=T+S+C+I$$
-其中$Y_t$表示t时刻的脆弱性，T表示长期趋势，即数据中对时间的变化相对稳定的一部分因素，比如在当前的气候条件下下，虽然气温的变化存在波动，但总体存在着上升的趋势。S表示季节变动，传统的时间序列分解方法一般用在长期的宏观经济指标中，因此颗粒度是季度。C是循环变动，循环变动和季节变动比较类似，也有周期因素在，但是循环变动的周期是隐形的。I是随机波动，是不可预测的波动。
-
-具体来说，在气候的分析中，长期趋势是最重要的部分，表示了气候变化的总体趋势，而我们分析的数据是以年为单位的，因此我们不需要考虑数据的季节变动的部分，而气候变化在循环变动这部分主要受太阳系运动的周期变化的影响，其周期比较长，在几十年的气候研究中我们不考虑这一部分对模型的影响。而随机波动是由多种原因综合导致的，通常假定他是白噪声$WN(0,\sigam^2)$。
-
-这样我们就可以建立含确定性时间趋势的过程如下：
-$$Y_t=\alpha + \delta t + \epsilon _t$$
-其中$\epsilon_t$是白噪声过程，且$\epsilon_t \sim N(0,\sigma ^2)$，则上述模型满足经典回归假设，标准OLS t或F统计量将具有精确小样本t或F分布。但是考虑到气候的复杂性以及我们忽略了气候的循环变动，因此这里的$\epsilon_t$是修正后的误差，不再假定他是高斯分布，则我们使用求$\alpha$和$\delta$的OLS估计的渐进分布的技术，该技术不但对于研究时间趋势有用，而且对于分析各种非平稳过程的统计量也非常有用。
+使用该表达式即可计算未来的GDP增速的均值、方差、给定置信度的置信区间。
 }

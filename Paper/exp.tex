@@ -58,8 +58,11 @@ The $r_k$ calculated for the indexes in the year of 2017 is $0.01764$, which is 
         \label{fig:exp:direct:specific}
     }
     \caption{Direct Effect of Environmental Factors.}
+    \label{tab:exp:direct}
 \end{figure}
 
+\input{indirect}
+\hide{
 \subsection{Indirect Effect of Environmental Factors}
 
 To measure the indirect effect of environmental factors, we modeled several regression models in Section~\ref{sec:model:indirect}. Specifically, we choose the EPI index and FSI index described in Section~\ref{sec:exp:prep} to represent the environmental factors $\EFF$ and human factors $\HFF$, respectively. The indexes are scaled and centralized, such that a comparsion of coefficients is meaningful.
@@ -123,10 +126,93 @@ Experiments show that the impact of environmental change propagates mainly throu
    \item Environmental factors also influence human factors, and human factors act as a mediator variable to pass the influence of the environmental factors to fragility 
 \end{itemize}
 Which is illustrated in Figure~\ref{fig:model:indirect:mediator}. 
+}
+
 
 \subsection{Temporal Model}
 \label{sec:exp:temporal}
+The temporal prescribed in Section~\ref{sec:model2} is implemented by these following steps:
+\vpara{Variables Preparation.}
+    The following basic indicators are chosen as basis for our temporal model, and can be found on the data bank of the World Bank~\reminder{specific?}.
+    \begin{itemize}
+       \item Gross Domestic Production (GDP) (constant 2010 US dollar) 
+       \item Gross Domestic Production Annual Growth Rate
+    \end{itemize}
+    We denote GDP at time $t$ by $G_t$ and its growth rate $R_t
+    \triangleq\frac{\Delta G_t}{\Delta t} = \frac{G_t-G_{t-1}}{G_{t-1}}$. $E_t$ is the EPI index in time $t$. Oftentimes variables are scaled, i.e first centralized by its mean, and normalized by its standard variance.
+    The scaled version of these variables are written as $\overline{G_t}, \overline{R_t}$, and $\overline{E_t}$, while the scaling is performed according to the set of data at all time steps prior to and including $t$.
 
+\vpara{Forcasting GDP.}
+The GDP Growth is modeled by ARIMA in Section~\ref{sec:model2}.
+Furthermore, we choose three values of $\mu$ to represent different speed of economic development: $\mu=0$ for stable, $\mu=0.3$ for moderate, and $\mu=0.5$ for fast.
+The prediction of GDP growth rate in these three settings is in Figure~\ref{fig:exp:future:gdp}.
+
+
+\vpara{Predicting EPI.}
+    Now every variable is well prepared for the prediction of EPI index, as in Figure~\ref{fig:exp:future:epi}. The specifics are as below.
+    The temporal equation is expressed as:
+    \begin{equation}
+       E_t = \beta_0 E_{t-1} + \beta_1 \log(G_t) + \beta_2 R_t + \beta_3 \overline{R_t}\times\overline{G_t} + \beta_4\overline{R_t}\times\overline{R_t}
+       \label{eqn:exp:temporal:regression}
+    \end{equation}
+    The parameters are determined by standard linear regression, with resutls listed in Figure~\ref{tab:exp:temporal:params}. The signs of coefficients show the effects of variables:
+    
+    \begin{table}[htbp]
+        \centering
+        \begin{tabular}{|l|ccccc|} \hline
+            Variable & $E_{t-1}$ & $\log(G_t)$ & $R_t$ & $\overline{E_{t-1}}\times\overline{G_t}$ & $\overline{E_{t-1}}\times\overline{R_t}$
+            \\ \hline
+            Coefficient & 0.35 & -6.79 & -0.21 & -0.71 & 0.07 
+            \\ \hline
+        \end{tabular}
+        \caption{Parameters for our Temporal Model.}
+        \label{tab:exp:temporal:params}
+    \end{table}
+    \begin{itemize}
+       \item Good environmental performance tends to become better;
+       \item Fast GDP Growth tends to damage environmental performance; however, when EPI is sufficiently high, the damage is neutralized.
+    \end{itemize}
+    \reminder{weakness: reflects the specific status of a country in a certain period.}
+
+
+\begin{figure}[htbp]
+    \centering
+    \subfigure[Future GDP Growth Rate]{
+        \includegraphics[width=.4\linewidth]{figs/gdp_growth_future}
+        \label{fig:exp:future:gdp}
+    }
+    \subfigure[Future EPI Index]{
+        \includegraphics[width=.4\linewidth]{figs/epi_future}
+        \label{fig:exp:future:epi}
+    }
+    \caption{Future GDP and EPI Index. Each is predicted under three different development settings: fast economic growth, moderate economic growth, and stable economic growth.}
+    \label{fig:exp:future}
+\end{figure}
+
+\vpara{Trade-off between Development and Environment.} 
+From Figure~\ref{fig:exp:future:epi}, we see that in stable development setting, Mauritius does not reach a environmental fragile status within the range of 50 years.
+
+However, faster economic development brings instablizing factors. Under moderate and fast development settings, where $\mu$ is $0.3$ and $0.5$ respectively, Mauritius would be environmentally fragile within 50 years. The faster the development, the sooner it becomes fragile.
+
+We then consider another hyperparameter $\alpha$ proposed in Section~\ref{sec:model2}, used to represent the investment of a country to control for environmental instability possibly brought by economic development.
+
+Remember that $\alpha$ does not change the predicted value of $G_t$, $R_t$ per se. Instead, when predicting EPI, the values of variables used in Eqn.~\ref{eqn:exp:temporal:regression} is adjusted: $R_t\leftarrow R_t-\alpha$, $G_t\leftarrow (R_t-\alpha)G_{t-1}+G_{t-1}$. Therefore, it is considered the annual governmental investment as percentage of GDP to improve environmental performance.
+
+We visualized the minimum $\alpha$, i.e. percentage of GDP as investment to protect environment, that is required to guaranteed that the state's EPI is larger than 50 in 50 years. The result is as in Figure~\ref{fig:exp:tradeoff}.
+\begin{figure}[htbp]
+   \centering
+   \includegraphics[width=.4\linewidth]{figs/tradeoff} 
+   \caption{Trade-off between Development and Environment}
+   \label{fig:exp:tradeoff}
+\end{figure}
+
+Clearly, when the economic development is sufficiently large, the government need to invest a certain amount of money to ensure environmental stability.
+
+We are interested in the cost of environmental protection. The investment is calculated as $\alpha G_t$ for each year $t$. For simplicity, we assume that the state gains $t\mu G_t$ for each year $t$ for fast economic development, since theoretically, the economic development contributes accumulatively $\mu$ percent of GDP growth each year.
+
+Therefore, annual cost of environmental protection is $(\alpha-t\mu)G_t$.
+
+Figure~\ref{fig:exp:tradeoff} shows a trade-off between fast economic development and environmental protection. \reminder{need to show when the contribution is larger than the side effect.}
 
 \subsection{Regional Model}
 \label{sec:exp:regional}
