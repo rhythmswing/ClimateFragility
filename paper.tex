@@ -1,0 +1,100 @@
+%=====================��=======��==============================
+\documentclass[a4paper,12pt]{article}%\documentclass[a4paper,12pt,titlepage]{article}
+\usepackage[22222222]{MCMthesis}  %�Ӻ���������д
+
+\usepackage{palatino}
+\usepackage{times}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{algorithmic}
+%\usepackage[lined,algonl,boxed]{algorithm2e}
+\usepackage{longtable}
+\usepackage{array}
+%\usepackage{subcaption}
+\usepackage{stfloats}
+\usepackage{balance}
+\usepackage{multicol}
+\usepackage{color}
+\usepackage{epstopdf}
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{booktabs} % For formal tables
+\usepackage{epsfig}
+\usepackage{enumitem}
+\usepackage{cleveref}
+\usepackage{xspace}
+\usepackage{url}
+\usepackage{float}
+%\usepackage{natbib}
+\usepackage{booktabs}
+\usepackage{makecell}
+\usepackage{float}
+\usepackage{geometry}
+\geometry{left=2cm,right=2.5cm,top=3cm,bottom=2cm}
+
+
+\setlength\parskip{.8\baselineskip}
+\setcounter{secnumdepth}{2}
+
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}   %Use Input in the format of Algorithm
+\renewcommand{\algorithmicensure}{\textbf{Output:}}  %UseOutput in the format of Algorithm
+\newcommand{\reminder}[1]{\textbf{\color{red}[** #1 **]}}  % to fix
+\newcommand{\hide}[1]{} %hide
+\newcommand{\vpara}[1]{\vspace{0.1in}\noindent\textbf{#1 }}
+\newcommand{\para}[1]{\vspace{0.01in}\noindent\textbf{#1 }}
+\newcommand{\secref}[1]{Section~\ref{#1}} %section reference
+\newcommand{\Real}{\ensuremath{\mathbb{R}}}  % Real numbers
+\newcommand{\figref}[1]{Figure~\ref{#1}} %section reference
+\newcommand{\beq}[1]{\vspace{-0.01in}\begin{equation}#1\end{equation}\vspace{-0.01in}}
+\newcommand{\beqn}[1]{\vspace{-0.01in}\begin{eqnarray}#1\end{eqnarray}\vspace{-0.01in}}
+\newcommand{\besp}[1]{\begin{split}#1\end{split}}
+\newcommand{\beal}[1]{\vspace{-0.03in}\begin{align}#1\end{align}\vspace{-0.03in}}
+
+% Common mathematical notations
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\diag}{diag}
+\DeclareMathOperator*{\trace}{trace}
+\newcommand\expt{\mathbb E}
+\newcommand\prob{\mathbb P}
+\newcommand\RR{\mathcal R}
+% Specific Notations
+\DeclareMathOperator*{\HFF}{\mathbf{H}} % human factor
+%\DeclareMathOperator*{\EFF}{\mathbf{E}} % environmental factor
+\DeclareMathOperator*{\EFF}{E}
+\DeclareMathOperator*{\FFF}{\mathbf{F}} % fragility score
+\DeclareMathOperator*{\FFS}{s_f}
+
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\newtheorem*{remark}{Remark}
+\newtheorem{theorem}{Theorem}
+
+\newtheorem{eg}{Example}
+
+
+\sloppy
+
+
+
+\title{21st Century Newton}
+\begin{document}
+\maketitle                                                       
+\input{intro.tex}
+\input{model1.tex}
+\input{model2.tex}
+\input{exp.tex}
+\input{related.tex}
+\input{conclusion.tex}
+
+\balance
+\bibliographystyle{acm}
+\bibliography{mybibtex}
+
+\end{document}
