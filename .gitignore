@@ -1,0 +1,17 @@
+
+*.log
+*.aux
+*.bbl
+*.blg
+Paper/mcmpaper.pdf
+Paper/mcmpaper.out
+Paper/mcmpaper.toc
+Paper/paper.pdf
+Paper/paper.out
+Paper/paper.pdf
+Paper/paper.toc
+Paper/paper.pdf
+reference/2018_MCM-ICM_Problems/2018_ICM_Problem_E.pdf
+reference/epi2018technicalappendixv01.pdf
+reference/indirect_files/MathJax.js.下载
+Paper/paper.pdf
