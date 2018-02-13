@@ -34,7 +34,7 @@ The assumptions are natural. Assumption~\ref{model:assump:1} requires to quantif
 
 Assumption~\ref{model:assump:2} requires a more sophisticated analysis of the two factors, including their respective and joint effects on the fragility, and the interaction between them. We are especially interested in the effects of environmental factors, which include \emph{direct} effect, which is the influence on fragility directly imposed by environmental factors; and \emph{indirect} effect, which is the influence on fragility imposed by envirionmental factors indirectly through human factors. Two hypothesis model to explain the indirect effect is visualized in Figure~\ref{fig:model:indirect:moderator} and~\ref{fig:model:indirect:mediator}.
 
-The direct effect of environmental factors is measured by the effect of environmental factors on fragility score, with an unbiased estimation of the effect obtained by propensity score matching~\reminder{citation}. The indirect effect of environmental factors can be explained by two hypothesis models: the \emph{moderator variable} model, as shown in Figure~\ref{fig:model:indirect:moderator}; and the \emph{mediator variable} model, as shown in Figure~\ref{fig:model:indirect:mediator}. We verify these two hypothesis.
+The direct effect of environmental factors is measured by the effect of environmental factors on fragility score, with an unbiased estimation of the effect obtained by propensity score matching~\cite{caliendo2008some,dehejia2002propensity,hirano2004propensity}. The indirect effect of environmental factors can be explained by two hypothesis models: the \emph{moderator variable} model, as shown in Figure~\ref{fig:model:indirect:moderator}; and the \emph{mediator variable} model, as shown in Figure~\ref{fig:model:indirect:mediator}. We verify these two hypothesis.
 
 In the following of this section, we are dedicated to enrich our model by developing several key ingredients: 
 \begin{enumerate}
@@ -44,10 +44,8 @@ In the following of this section, we are dedicated to enrich our model by develo
 \end{enumerate}
 
 The basic framework is sufficient to cover most of the requirements of the tasks.
-Furthermore, we discuss strengthes and weaknesses respectively in each part.
 
 \subsection{Representing the Two Factors}
-\reminder{notes on notations}
 \label{sec:model:rep}
 \begin{table}[htbp]
    \centering
@@ -58,6 +56,8 @@ Furthermore, we discuss strengthes and weaknesses respectively in each part.
       $ \FFF $ & binary random variable of fragility \\ \hline
       $\FFS $ & fragility score \\ \hline
    \end{tabular}
+   \caption{Notations}
+   \label{tab:model:notations}
 \end{table}
 
 \begin{figure}[t]
@@ -74,11 +74,21 @@ Furthermore, we discuss strengthes and weaknesses respectively in each part.
     \label{fig:model:indexes}
 \end{figure}
 
-\vpara{Environmental Performance Index.} It is an index to evaluate a state's environmental performance by~\reminder{Who and citation}. It is composed of indicators in ecosystem vitality and environmental health. 
+Basic notations are listed in Table~\ref{tab:model:notations}.
+The variables in the table are theoretical. In order to reflect these variables numerically from empirical data, we introduce two widely recognized indexes:
+
+\vpara{Environmental Performance Index (EPI).} It is an index to evaluate a state's environmental performance developed by Yale University~\cite{EPI_index}. It is composed of indicators in ecosystem vitality and environmental health. 
+
+\vpara{Fragile States Index (FSI).} It is an index to measure a country's vulnerability to conflict developed by Fund for Peace and Foreign Policy by accounting for 12 social, economical, and political indicators.~\cite{FSI_index}
+
+The composition of the two indexes are illustrated in Figure~\ref{fig:model:indexes}. 
+FSI index uses indicators relevant to human activity, and is therefore used as empirical data for $\HFF$. 
+EPI index measures environmental fragility, and is therefore used as empirical data for $\EFF$.
+
+Sometimes, we use binarized values of EPI and FSI indexes to denote the status of a state.
 
 \subsection{Probabilistic Fragility Measure}
 \label{sec:model:frag}
-\reminder{Need to emphasize that it is logistic regression.}
 In this part, we derive a novel fragile score, $\FFS$, which incorporates both environmental and human factors. The score $\FFS$ is based on probabilistic intuitions, and is therefore called the \emph{probabilistic fragility score}, or the fragility score for convenience.
 
 Without loss of generality, we refer to regions, sovereign states, and other concerned geographical entities as states.
@@ -116,7 +126,7 @@ Using the linear assumption and the logistic form in Eqn~\ref{eqn:model:logistic
    \label{eqn:model:prob_estimate}
 \end{eqnarray}
 
-In order to make the estimated probability distribution resemble the true distribution, we estimate parameters $\mathbf{W}_1, \mathbf{W}_2$ by minimizing the cross entropy loss, which is equivalent to minimizing the KL divergence~\reminder{reference needed} between the estimated distribution and the empirical distribution. \reminder{specific form omitted.}
+In order to make the estimated probability distribution resemble the true distribution, we estimate parameters $\mathbf{W}_1, \mathbf{W}_2$ by minimizing the cross entropy loss, which is equivalent to minimizing the KL divergence~\cite{deeplearning} between the estimated distribution and the empirical distribution. Specifics of optimization are omitted; interested readers may see \cite{deeplearning}.
 
 Finally, probabilities in Eqn.~\ref{eqn:model:frag_prob_fact} is replaced by the estimates given in Eqn.~\ref{eqn:model:prob_estimate}, yielding the \emph{probabilistic fragility score}:
 \begin{equation}
@@ -140,7 +150,7 @@ Formally, the propensity score of a certain state is defined as the conditional 
    p=\prob(\EFF=1|\HFF)
    \label{eqn:model:propensity}
 \end{equation}
-\reminder{environmental status? environmental factors? they are probably different.}
+%\reminder{environmental status? environmental factors? they are probably different.}
 In order to estimate the probability, we adopt similar procedures used in Section~\ref{sec:model:frag}, using the score of logistic regression, $\hat{p}$, of human factors $\HFF$ against environmental status $\EFF$. Then we match each of the unsustainable states to one sustainable state on propensity score, by using \emph{Nearest Neighbor Matching}: each unsustainable state is matched to the sustainable state whose propensity score is the closest. As such, a new data set in which the sustainable group and the unsustainable group and their propensity scores are balanced, is obtained. 
 
 Based on the newly obtained data set, we calculate the adjusted score difference:
@@ -155,12 +165,12 @@ Where $\hat{s}^0_f$, $\hat{s}^1_f$ are average scores of the sustainable and uns
 \label{sec:model:indirect}
 In order to measure the indirect effect of environmental factors $\EFF$, we propose two candidate models: the moderator variable model, and the mediator variable model.
 
-\reminder{is the difference clearly explained?}
+%\reminder{is the difference clearly explained?}
 The moderator variable model assumes that the environmental factors influence the fragility score, and the relationship is calibrated by the effect of human factors. 
-In this case, the human factors $\HFF$ are called \emph{the moderator variable}, as illustrated in Figure~\ref{fig:model:indirect:moderator}.\reminder{reference.}
+In this case, the human factors $\HFF$ are called \emph{the moderator variable}, as illustrated in Figure~\ref{fig:model:indirect:moderator}.~\cite{baron1986moderator}
 
 The mediator variable model assumes that the environmental factors and human factors jointly influence the fragility score.
-Furthermore, the environmental factors influence the fragility score both directly, and indirectly through the human factors. The illustration of this model is as in Figure~\ref{fig:model:indirect:mediator}.\reminder{reference.}
+Furthermore, the environmental factors influence the fragility score both directly, and indirectly through the human factors. The illustration of this model is as in Figure~\ref{fig:model:indirect:mediator}.~\cite{aiken1991multiple}
 
 \vpara{Moderator variable model.}
 The model is written as 
@@ -190,7 +200,6 @@ if $H_0$ is rejected, we are confidence to say that the moderator effect of $h_i
 If the moderator effect is indeed significant, then the extent of the effect of $\HFF$ is then quantified by $\mathbf{\beta} = \left[\beta_1,\ldots,\beta_p\right]'$ and respective components.
 
 \vpara{Mediator variable model.} 
-\reminder{Human factors are multivariate. Maybe consider human factors only as FSI, a single variable.}
 
 We first declare the following values:
 \begin{itemize}

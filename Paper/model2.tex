@@ -1,7 +1,6 @@
 
 \subsection{Temporal Model}
 \label{sec:model2}
-\reminder{hypothesis need to be specified here.}
 % In Section~\ref{sec:model1} we analyzed in depth the relationship between the three variables: the environmental factors $\EFF$, the human factors $\HFF$, and the fragility score $\FFF$. 
 In order to better model climate change, we further consider time as a variable, and investigate how climate change would have influenced the fragility of states. 
 We begin by formulating the following assumptions:
@@ -41,7 +40,7 @@ Generally, the model establishes that
 where $p$, $q$, $k$ are hyperparameters, $a_i$, $b_i$ are parameters to be estimated. 
 The first sum in Eqn~\ref{eqn:model2:arima} is the autoregressive term, and the second sum is the moving average of white noises, where $\epsilon_{t-i}\sim \rm{N}(0,1)$. Eqn.~\ref{eqn:model2:arima_diff} performs differencing, where $k$ is the order of differencing, to guarantee that the time series to be modeled is stationary.
 
-Due to lack of space, the detailed description of this model is omitted. We encourage inerested readers to see detailed description in \reminder{where?}.
+Due to lack of space, the detailed description of this model is omitted. We encourage inerested readers to see detailed description in \cite{hamilton1994time}.
 
 \vpara{Modeling Government Invervention and Economic Boom}
 Where the environment deteriorates, the government should step in to prevent the environment from becoming fragile. 
@@ -55,7 +54,7 @@ The forcase of GDP growth is generally stable by our model, as shown in Figure~\
 \end{itemize}
 Specifically, the economic boom brings additional $\mu$ GDP growth every year. The government uses $\alpha$ of the annual GDP to ease the negative impact of fast economic development. It does not mean that the annual GDP or GDP growth rate is decreased by $\alpha$; the effect of government intervention is manifested in EPI. The specific implementation is described in Section~\ref{sec:exp:temporal}.
 
-In reality, the growth rate of GDP doesn't necessarily increase at a regular speed. In settings of fast economic development, for example, China, the GDP growth rate is jumped to a high level which is sustained for quite a long period of time, instead of growing steadily to a high level. However, our model setting is sufficient for stimulating the effect of high economic growth.\reminder{why? need a better reason.}
+In reality, the growth rate of GDP doesn't necessarily increase at a regular speed. In settings of fast economic development, for example, China, the GDP growth rate is jumped to a high level which is sustained for quite a long period of time, instead of growing steadily to a high level. However, our model setting is sufficient for stimulating the effect of high economic growth.
 
 \hide{
 \section{GDP的时间序列分析}

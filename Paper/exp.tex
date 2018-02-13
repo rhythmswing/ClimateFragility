@@ -6,18 +6,16 @@
 \vpara{Dataset.}
 % years
 
-We prepared several representative datasets for the variables we need: $\EFF$, $\HFF$, and $\FFF$.
-\vpara{Fragility Score Index.}
+We prepare several data sets required for our experiments:
 
-\vpara{Environmental Performance Index.}
-
-\vpara{Other Indicators.}
-Other indicators include:
 \begin{itemize}
+   \item FSI Index
+   \item EPI Index
    \item Gross Domestic Product (GDP) (constant 2010 US dollar) 
    \item GDP growth rate
 \end{itemize}
-which is acquired from World Bank Databank~\reminder{citation}.
+The indexes are acquired from \cite{FSI_index} and \cite{EPI_index}.
+GDP and GDP growth rate are acquired from World Bank Databank~\cite{world_bank}. For each of them, we prepared data for 149 countries from 2007 to 2017.
 
 \subsection{Calculation of Fragility Score}
 \label{sec:exp:frag}
@@ -107,7 +105,7 @@ Table~\ref{tab:exp:moderator} shows that the moderator effect is not significant
 \vpara{Mediator Effect.}
 Table~\ref{tab:exp:mediator:general} shows the result of the test of the mediator effect of human factors, represented by the FSI index. The results show that the effect of human factors on fragility is significant, and that the effect of environmental factors on fragility is significant, by corresponding coefficients in models $\FFF\sim\HFF+\EFF$ and $\HFF\sim\EFF$. In both models of $\FFF\sim\EFF$ and $\FFF\sim\HFF+\EFF$, the effects of human factors on the fragility are significant; furthermore, the absolute value of the coefficient is reduced by approximately $0.4$ once $\HFF$ is introduced. Therefore, the human factors act as a mediator variable, through which the environmental factors influence fragility. Furthermore, model $\FFF\sim\EFF$ shows that environmental factors also influence fragility directly. As such, a statistical proof of the mediator variable model in Section~\ref{sec:model:indirect} is complete.
 
-We are also interested in how the influence of environmental factors propagate through human factors. Therefore, we choose the 12 indicators used in the calculation of HSI index~\reminder{citation}, and construct a new regression model: $\FFF\sim\EFF+h_1+\ldots+h_12$, where $h_i$ is an individual factor. However, not all of the indicators are significant, therefore we attempt to find best subset of indicators that are significant by stepwise regression: at each step, we remove from the regression model an indicator that is statistically insignificant. Since previously removed indicator could be significant in the new model, we add at each step a previously removed indicator that has become significant to the regression model, if there is one. We stop when there is no insignificant indicator to remove and no significant indicator to add. 
+We are also interested in how the influence of environmental factors propagate through human factors. Therefore, we choose the 12 indicators used in the calculation of FSI index~\cite{FSI_index}, and construct a new regression model: $\FFF\sim\EFF+h_1+\ldots+h_12$, where $h_i$ is an individual factor. However, not all of the indicators are significant, therefore we attempt to find best subset of indicators that are significant by stepwise regression: at each step, we remove from the regression model an indicator that is statistically insignificant. Since previously removed indicator could be significant in the new model, we add at each step a previously removed indicator that has become significant to the regression model, if there is one. We stop when there is no insignificant indicator to remove and no significant indicator to add. 
 
 The used subset of indicators, their coefficients and significance are shown in Table~\ref{tab:exp:mediator:subset}.
 Experiments show that the impact of environmental change propagates mainly through demographic pressures, human flight and brain drain, and human rights. It also flows through group grievance in a less significant manner. Furthermore, it goes through Economy and refugee flows slightly. 
@@ -140,7 +138,7 @@ Which is illustrated in Figure~\ref{fig:model:indirect:mediator}.
 \label{sec:exp:temporal}
 The temporal prescribed in Section~\ref{sec:model2} is implemented by these following steps:
 \vpara{Variables Preparation.}
-    The following basic indicators are chosen as basis for our temporal model, and can be found on the data bank of the World Bank~\reminder{specific?}.
+    The following basic indicators are chosen as basis for our temporal model, and can be found on the data bank of the World Bank~\cite{world_bank}.
     \begin{itemize}
        \item Gross Domestic Production (GDP) (constant 2010 US dollar) 
        \item Gross Domestic Production Annual Growth Rate
@@ -179,7 +177,6 @@ The prediction of GDP growth rate in these three settings is in Figure~\ref{fig:
        \item Good environmental performance tends to become better;
        \item Fast GDP Growth tends to damage environmental performance; however, when EPI is sufficiently high, the damage is neutralized.
     \end{itemize}
-    \reminder{weakness: reflects the specific status of a country in a certain period.}
 
 
 \begin{figure}[htbp]
