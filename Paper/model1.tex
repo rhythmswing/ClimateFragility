@@ -1,9 +1,9 @@
-\section{Theoretical Analysis}
+\section{Theoretical Framework}
 \label{sec:model1}
 
 \begin{figure}[t]
     \centering
-   \includegraphics[width=.8\linewidth]{figs/model.eps} 
+   \includegraphics[width=.5\linewidth]{figs/model.eps} 
    \caption{Hypothesis Model Illustration}
    \label{fig:model:model}
 \end{figure}
@@ -60,6 +60,7 @@ The basic framework is sufficient to cover most of the requirements of the tasks
    \label{tab:model:notations}
 \end{table}
 
+\hide{
 \begin{figure}[t]
     \centering
     \subfigure[FSI]{
@@ -73,19 +74,26 @@ The basic framework is sufficient to cover most of the requirements of the tasks
     \caption{The two fragiliy indexes.}
     \label{fig:model:indexes}
 \end{figure}
+}
+
+\begin{figure}[htbp]
+   \centering
+   \includegraphics[width=.4\linewidth]{figs/fsiepi}
+   \caption{EPI and FSI Indexes}
+   \label{fig:model:epifsi}
+\end{figure}
 
 Basic notations are listed in Table~\ref{tab:model:notations}.
 The variables in the table are theoretical. In order to reflect these variables numerically from empirical data, we introduce two widely recognized indexes:
 
-\vpara{Environmental Performance Index (EPI).} It is an index to evaluate a state's environmental performance developed by Yale University~\cite{EPI_index}. It is composed of indicators in ecosystem vitality and environmental health. 
+\vpara{Environmental Performance Index (EPI).} It is an index to evaluate a state's environmental performance developed by Yale University~\cite{EPI_index}. It is composed of indicators in ecosystem vitality and environmental health. The higher the index, the better the environment, 
 
-\vpara{Fragile States Index (FSI).} It is an index to measure a country's vulnerability to conflict developed by Fund for Peace and Foreign Policy by accounting for 12 social, economical, and political indicators.~\cite{FSI_index}
+\vpara{Fragile States Index (FSI).} It is an index to measure a country's vulnerability to conflict developed by Fund for Peace and Foreign Policy by accounting for 12 social, economical, and political indicators.~\cite{FSI_index} Higher index indicates more vulnerability.
 
-The composition of the two indexes are illustrated in Figure~\ref{fig:model:indexes}. 
 FSI index uses indicators relevant to human activity, and is therefore used as empirical data for $\HFF$. 
 EPI index measures environmental fragility, and is therefore used as empirical data for $\EFF$.
 
-Sometimes, we use binarized values of EPI and FSI indexes to denote the status of a state.
+Sometimes, we use binarized values of EPI and FSI indexes to denote the status of a state. The threshold and the relation between EPI and FSI are visualized in Figure~\ref{fig:model:epifsi}. 
 
 \subsection{Probabilistic Fragility Measure}
 \label{sec:model:frag}
