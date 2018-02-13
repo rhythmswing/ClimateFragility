@@ -117,6 +117,7 @@ The probability given in~\ref{eqn:model:frag_prob} quantifies the extent of frag
 In which we defined a new random variable $\mathbf{Z}=1$ if $\EFF=e,\FFF=1$ and $\mathbf{Z}=0$ otherwise.
 Eqn.~\ref{eqn:model:frag_prob_fact} allows us to only estimate the conditional probability of two binary random variables given human factors $\HFF$.
 
+\hide{
 For convenience of calculation, we assume linear relationships: 
 \begin{eqnarray}
    \log\frac{\prob(\mathbf{Z}=1|\HFF)}{\prob(\mathbf{Z}=0|\HFF)} & = & \mathbf{W}_1\HFF + \mathbf{e}_1 \nonumber \\
@@ -125,8 +126,10 @@ For convenience of calculation, we assume linear relationships:
 \end{eqnarray}
 
 Where $\mathbf{W}_i$ are parameters, $\mathbf{e}_i$ are Gaussian errors, $i=1,2$.
+}
 
-Using the linear assumption and the logistic form in Eqn~\ref{eqn:model:logistic_form}, we obtain the estimate of the probabilities respectively:
+%Using the linear assumption and the logistic form in Eqn~\ref{eqn:model:logistic_form}, we obtain the estimate of the probabilities respectively:
+We assume a linear assumption and perform a logistic regression to estimate the probabilities:
 
 \begin{eqnarray}
    \hat{p}_z & = & \frac{\exp(\mathbf{W}_1\HFF)}{1+\exp(\mathbf{W}_1\HFF)} \nonumber \\

@@ -5,15 +5,7 @@
 
 \vpara{Dataset.}
 % years
-
-We prepare several data sets required for our experiments:
-
-\begin{itemize}
-   \item FSI Index
-   \item EPI Index
-   \item Gross Domestic Product (GDP) (constant 2010 US dollar) 
-   \item GDP growth rate
-\end{itemize}
+The data set we prepared include the following indicators: FSI Index, EPI Index, Gross Domestic Product (GDP) (constant 2010 US dollar), and GDP growth rate.
 The indexes are acquired from \cite{FSI_index} and \cite{EPI_index}.
 GDP and GDP growth rate are acquired from World Bank Databank~\cite{world_bank}. For each of them, we prepared data for 149 countries from 2007 to 2017.
 
@@ -134,15 +126,11 @@ Which is illustrated in Figure~\ref{fig:model:indirect:mediator}.
 }
 
 
-\subsection{Temporal Model}
+\subsection{Forecasting Environmental Performance}
 \label{sec:exp:temporal}
 The temporal prescribed in Section~\ref{sec:model2} is implemented by these following steps:
 \vpara{Variables Preparation.}
-    The following basic indicators are chosen as basis for our temporal model, and can be found on the data bank of the World Bank~\cite{world_bank}.
-    \begin{itemize}
-       \item Gross Domestic Production (GDP) (constant 2010 US dollar) 
-       \item Gross Domestic Production Annual Growth Rate
-    \end{itemize}
+GDP growth rate and GDP (constant 2010 US) are chosen as basis for our temporal model, and can be found on the data bank of the World Bank~\cite{world_bank}.
     We denote GDP at time $t$ by $G_t$ and its growth rate $R_t
     \triangleq\frac{\Delta G_t}{\Delta t} = \frac{G_t-G_{t-1}}{G_{t-1}}$. $E_t$ is the EPI index in time $t$. Oftentimes variables are scaled, i.e first centralized by its mean, and normalized by its standard variance.
     The scaled version of these variables are written as $\overline{G_t}, \overline{R_t}$, and $\overline{E_t}$, while the scaling is performed according to the set of data at all time steps prior to and including $t$.
@@ -193,7 +181,7 @@ The prediction of GDP growth rate in these three settings is in Figure~\ref{fig:
     \label{fig:exp:future}
 \end{figure}
 
-\vpara{Trade-off between Development and Environment.} 
+\subsection{Trade-off between Development and Environment} 
 From Figure~\ref{fig:exp:future:epi}, we see that in stable development setting, Mauritius does not reach a environmental fragile status within the range of 50 years.
 
 However, faster economic development brings instablizing factors. Under moderate and fast development settings, where $\mu$ is $0.3$ and $0.5$ respectively, Mauritius would be environmentally fragile within 50 years. The faster the development, the sooner it becomes fragile.
@@ -228,8 +216,8 @@ We are interested in the cost of environmental protection. The investment is cal
 Therefore, annual cost of environmental protection is $(\alpha-t\mu)G_t$.
 
 Figure~\ref{fig:exp:tradeoff} shows a trade-off between fast economic development and environmental protection. 
-We see that, when the economic growth is too fast, the cost of investment is still higher than the contribution of $\mu$ at the fiften year. In such situations, even fast development is not beneficial and results in positive total cost, since environment is greatly damaged; if the government refuses to intervene in this case, the environment, EPI would fall below 40, making the state environmentally fragile.
+% We see that, when the economic growth is too fast, the cost of investment is still higher than the contribution of $\mu$ at the fiften year. In such situations, even fast development is not beneficial and results in positive total cost, since environment is greatly damaged; if the government refuses to intervene in this case, the environment, EPI would fall below 40, making the state environmentally fragile.
 
-On the countrary, a moderate rate of development, such as 0.3, would make sure that the benefit of economic growth is at least able to compensate most of the loss in environmental performance. For example, when $\mu=0.3, \alpha=15$, the total cost in 50 years would be 22269423781162.1 US dollars (constant 2010). 
+A moderate rate of development, such as 0.3, would make sure that the benefit of economic growth is at least able to compensate most of the loss in environmental performance. For example, when $\mu=0.3, \alpha=15$, the total cost in 50 years would be 22269423781162.1 US dollars (constant 2010). 
 
 Smaller $\mu$ would even result in positive revenue in the range of 50 years. Indeed, the cost would exceed the contributino of $\mu$ in the first few years, but $t\mu$ exceeds $\alpha$ with certain $t<50$. Therefore, such economic development pattern is ideal, since it achieves long-term balance of development and environmental protection.
