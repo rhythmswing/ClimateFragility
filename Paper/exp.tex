@@ -208,15 +208,31 @@ Remember that $\alpha$ does not change the predicted value of $G_t$, $R_t$ per s
 We visualized the minimum $\alpha$, i.e. percentage of GDP as investment to protect environment, that is required to guaranteed that the state's EPI is larger than 50 in 50 years. The result is as in Figure~\ref{fig:exp:tradeoff}.
 \begin{figure}[htbp]
    \centering
-   \includegraphics[width=.4\linewidth]{figs/tradeoff} 
-   \caption{Trade-off between Development and Environment}
+   \subfigure[EPI after 50 years]{
+       \includegraphics[width=.3\linewidth]{figs/muepi}
+       \label{fig:exp:tradeoff:muepi}
+   }
+   \subfigure[Minimum Investment] {
+       \includegraphics[width=.3\linewidth]{figs/tradeoff} 
+       \label{fig:exp:tradeoff:tradeoff}
+   }
+   \subfigure[Total Cost]{
+       \includegraphics[width=.3\linewidth]{figs/mucost}
+       \label{fig:exp:tradeoff:cost}
+   }
+   \caption{Trade-off between Development and Environment. In \ref{fig:exp:tradeoff:muepi} the data are EPI after 50 years. In \ref{fig:exp:tradeoff:tradeoff}, the dotted line is the lowest $\alpha$ to make sure fragility is stable after 50 years. The dashed line is $50\mu$, the theoretical contribution of fast economic growth after 50 years. \ref{fig:exp:tradeoff:cost} plots the total cost of environmental intervention in 50 years in terms of US dollar in 2010 with minimum $\alpha$ in \ref{fig:exp:tradeoff:tradeoff}.}
    \label{fig:exp:tradeoff}
 \end{figure}
 
 Clearly, when the economic development is sufficiently large, the government need to invest a certain amount of money to ensure environmental stability.
 
-We are interested in the cost of environmental protection. The investment is calculated as $\alpha G_t$ for each year $t$. For simplicity, we assume that the state gains $t\mu G_t$ for each year $t$ for fast economic development, since theoretically, the economic development contributes accumulatively $\mu$ percent of GDP growth each year.
+We are interested in the cost of environmental protection. The investment is calculated as $\alpha G_t$ for each year $t$. For simplicity, we assume that the state gains $t\mu G_t$ for each year $t$ for fast economic development, since theoretically, the economic development contributes accumulatively $\mu$ percent of GDP growth each year. 
 
 Therefore, annual cost of environmental protection is $(\alpha-t\mu)G_t$.
 
-Figure~\ref{fig:exp:tradeoff} shows a trade-off between fast economic development and environmental protection. \reminder{need to show when the contribution is larger than the side effect.}
+Figure~\ref{fig:exp:tradeoff} shows a trade-off between fast economic development and environmental protection. 
+We see that, when the economic growth is too fast, the cost of investment is still higher than the contribution of $\mu$ at the fiften year. In such situations, even fast development is not beneficial and results in positive total cost, since environment is greatly damaged; if the government refuses to intervene in this case, the environment, EPI would fall below 40, making the state environmentally fragile.
+
+On the countrary, a moderate rate of development, such as 0.3, would make sure that the benefit of economic growth is at least able to compensate most of the loss in environmental performance. For example, when $\mu=0.3, \alpha=15$, the total cost in 50 years would be 22269423781162.1 US dollars (constant 2010). 
+
+Smaller $\mu$ would even result in positive revenue in the range of 50 years. Indeed, the cost would exceed the contributino of $\mu$ in the first few years, but $t\mu$ exceeds $\alpha$ with certain $t<50$. Therefore, such economic development pattern is ideal, since it achieves long-term balance of development and environmental protection.
