@@ -3,6 +3,37 @@
 
 \subsection{Parameter Sensitivity}
 
+\begin{itemize}
+   \item[1.] \textbf{Sensitivity analysis of fragility against thresholds}
+
+First, we try to fine-tune the demarcation point of the EPI and FSI index and calculate the average of the absolute values of residuals. It turns out that there is not a significant deviation in terms of fragility.
+\begin{figure}[htbp]
+    \centering
+    \subfigure[Sensitivity against EPI]{
+        \includegraphics[width=.4\linewidth]{figs/error_EPI}
+        \label{fig:exp:future:gdp}
+    }
+    \subfigure[Sensitivity against FSI]{
+        \includegraphics[width=.4\linewidth]{figs/error_FSI}
+        \label{fig:exp:future:epi}
+    }
+    \caption{Fragility Sensitivity Analysis}
+    \label{fig:exp:future}
+\end{figure}
+   \item[2.] \textbf{Predicted model sensitivity analysis}
+
+Here we choose one country (Mauritius), the impact of the direct and indirect effects on the national fragile index are integrated. It is observed that there will not be a significant change in the predicted fragility when the EPI of the environmental index changes.
+\begin{figure}[t]
+    \centering
+   \includegraphics[width=.8\linewidth]{figs/predicted} 
+   \caption{Predicted Fragility Sensitivity Analysis}
+   \label{fig:model:model}
+\end{figure}
+   \item[3.] \textbf{Cross-validation for logistic regression}
+
+When calculating the fragility, we use logistic regression to estimate probability. Here we test the accuracy of logistic regression with 5-fold cross-validation. The regression accuracy of different probability varies as the figure shows:
+\end{itemize}
+
 \subsection{Strength and Weakness}
 We first give overall strength and weakness for our entire framework:
 \begin{itemize}
